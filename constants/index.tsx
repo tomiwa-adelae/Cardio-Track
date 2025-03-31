@@ -59,3 +59,15 @@ export const stats = [
 		number: "78",
 	},
 ];
+
+export const workoutType = [
+	"Running 🏃‍♂️",
+	"Walking 🚶‍♂️",
+	"Cycling 🚴‍♂️",
+	"Jump Rope 🔄",
+	"Treadmill 🏋️‍♂️",
+];
+
+export const workoutIntensities = ["Low", "Moderate", "High"];
+
+export const genders = ["Male", "Female"];

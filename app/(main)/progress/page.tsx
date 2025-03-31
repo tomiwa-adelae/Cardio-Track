@@ -2,21 +2,22 @@ import SectionHeader from "@/components/shared/SectionHeader";
 import Stats from "@/components/shared/Stats";
 import { WorkoutTable } from "@/components/shared/WorkoutTable";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { WorkoutCharts } from "@/components/WorkoutCharts";
 
 const page = () => {
 	return (
 		<div>
 			<SectionHeader
-				title={"Welcome back, Steve."}
+				title={"View Progress"}
 				description={
-					"Your heart health journey is on track. Keep pushing!"
+					"Analyze your performance and stay on track with your fitness journey!"
 				}
 			/>
 			<Stats />
-			<WorkoutTable title="Recent workout table" limit={3} />
-			<Button size={"lg"} className="mt-10" asChild>
-				<Link href="/new-cardio">+ Log new cardio sesion</Link>
+			<WorkoutCharts />
+			<WorkoutTable title="Workout history" />
+			<Button size={"lg"} className="mt-10">
+				Export reports
 			</Button>
 		</div>
 	);

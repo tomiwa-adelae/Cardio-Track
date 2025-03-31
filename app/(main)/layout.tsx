@@ -6,9 +6,8 @@ export default function MainLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<div>
+		<div className="overflow-hidden">
 			<LeftSidebar children={children} />
-			{/* {children} */}
 		</div>
 	);
 }

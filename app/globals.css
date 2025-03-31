@@ -118,3 +118,11 @@
 .cl-footer {
 	margin-top: 10px;
 }
+
+body {
+	overflow-y: hidden !important;
+}
+
+.PhoneInput input {
+	outline: none;
+}

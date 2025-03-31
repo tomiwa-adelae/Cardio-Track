@@ -34,9 +34,65 @@ const invoices = [
 		calories: "680kcal",
 		intensity: "high",
 	},
+	{
+		date: "25 Mar 2025",
+		workoutType: "Running",
+		duration: "45 minutes",
+		distance: "6.2km",
+		calories: "680kcal",
+		intensity: "high",
+	},
+	{
+		date: "25 Mar 2025",
+		workoutType: "Running",
+		duration: "45 minutes",
+		distance: "6.2km",
+		calories: "680kcal",
+		intensity: "high",
+	},
+	{
+		date: "25 Mar 2025",
+		workoutType: "Running",
+		duration: "45 minutes",
+		distance: "6.2km",
+		calories: "680kcal",
+		intensity: "high",
+	},
+	{
+		date: "25 Mar 2025",
+		workoutType: "Running",
+		duration: "45 minutes",
+		distance: "6.2km",
+		calories: "680kcal",
+		intensity: "high",
+	},
+	{
+		date: "25 Mar 2025",
+		workoutType: "Running",
+		duration: "45 minutes",
+		distance: "6.2km",
+		calories: "680kcal",
+		intensity: "high",
+	},
+	{
+		date: "25 Mar 2025",
+		workoutType: "Running",
+		duration: "45 minutes",
+		distance: "6.2km",
+		calories: "680kcal",
+		intensity: "high",
+	},
 ];
 
-export function WorkoutTable({ title }: { title: string }) {
+export function WorkoutTable({
+	title,
+	limit,
+}: {
+	title: string;
+	limit?: number;
+}) {
+	const displayedWorkouts = limit ? invoices.slice(0, limit) : invoices;
+
 	return (
 		<div>
 			<h3 className="font-medium text-lg mb-4 uppercase">{title}</h3>
@@ -52,7 +108,7 @@ export function WorkoutTable({ title }: { title: string }) {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					{invoices.map((invoice, index) => (
+					{displayedWorkouts.map((invoice: any, index: number) => (
 						<TableRow key={index}>
 							<TableCell className="font-medium">
 								{invoice.date}

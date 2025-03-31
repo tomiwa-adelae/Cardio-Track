@@ -1,3 +1,4 @@
+import { NewCardioForm } from "@/components/forms/NewCardioForm";
 import SectionHeader from "@/components/shared/SectionHeader";
 import React from "react";
 
@@ -10,6 +11,7 @@ const page = () => {
 					"Track your progress and stay on top of your cardio goals!"
 				}
 			/>
+			<NewCardioForm />
 		</div>
 	);
 };

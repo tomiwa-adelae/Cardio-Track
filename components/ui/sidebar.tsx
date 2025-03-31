@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { IconX } from "@tabler/icons-react";
 import Image from "next/image";
 import Logo from "../shared/Logo";
+import { usePathname } from "next/navigation";
 
 interface Links {
 	label: string;
@@ -177,7 +178,7 @@ export const SidebarLink = ({
 	className?: string;
 	props?: LinkProps;
 }) => {
-	const { open, animate } = useSidebar();
+	const { open, setOpen, animate } = useSidebar();
 	return (
 		<Link
 			href={link.href}
@@ -186,6 +187,7 @@ export const SidebarLink = ({
 				className
 			)}
 			{...props}
+			onClick={() => setOpen(!open)}
 		>
 			<Image
 				src={link.icon}
@@ -204,7 +206,10 @@ export const SidebarLink = ({
 						: "inline-block",
 					opacity: animate ? (open ? 1 : 0) : 1,
 				}}
-				className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0 uppercase font-medium group-hover:text-primary"
+				className={cn(
+					"text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0 uppercase font-medium group-hover:text-primary",
+					className
+				)}
 			>
 				{link.label}
 			</motion.span>

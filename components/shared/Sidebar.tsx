@@ -8,9 +8,11 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Logo from "./Logo";
 import { navLinks } from "@/constants";
+import { usePathname } from "next/navigation";
 
 export function LeftSidebar({ children }: any) {
 	const [open, setOpen] = useState(false);
+	const pathname = usePathname();
 	return (
 		<div
 			className={cn(
@@ -23,13 +25,25 @@ export function LeftSidebar({ children }: any) {
 					<div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
 						<Logo />
 						<div className="mt-8 flex flex-col gap-4">
-							{navLinks.map((link, idx) => (
-								<SidebarLink key={idx} link={link} />
-							))}
+							{navLinks.map((link, idx) => {
+								const isActive =
+									pathname === link.href ||
+									pathname.startsWith(`${link.href}/`);
+								console.log(isActive);
+								return (
+									<SidebarLink
+										key={idx}
+										link={link}
+										className={
+											isActive ? "text-primary" : ""
+										}
+									/>
+								);
+							})}
 						</div>
 					</div>
 					<div>
-						<SidebarLink
+						{/* <SidebarLink
 							link={{
 								label: "Manu Arora",
 								href: "#",
@@ -43,7 +57,7 @@ export function LeftSidebar({ children }: any) {
 									/>
 								),
 							}}
-						/>
+						/> */}
 					</div>
 				</SidebarBody>
 			</Sidebar>
