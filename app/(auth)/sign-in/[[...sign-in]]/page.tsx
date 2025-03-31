@@ -1,5 +1,5 @@
 import Logo from "@/components/shared/Logo";
-import { SignUp } from "@clerk/nextjs";
+import { SignIn } from "@clerk/nextjs";
 import Image from "next/image";
 
 import { Inknut_Antiqua } from "next/font/google";
@@ -23,15 +23,14 @@ const page = () => {
 						<h2
 							className={`${inknut.className} uppercase text-lg font-semibold mb-2 text-primary`}
 						>
-							Join us now
+							Welcome back!
 						</h2>
 						<p className="text-base">
-							Create an account to easily log your cardio
-							sessions, track progress, and stay motivated on your
-							fitness journey
+							Log in to access your cardio records, track your
+							progress, and stay on top of your fitness goals.
 						</p>
 						<div className="mt-8 w-full">
-							<SignUp />
+							<SignIn />
 						</div>
 					</div>
 				</div>
@@ -43,7 +42,7 @@ const page = () => {
 				height={1000}
 				className="hidden md:block w-full h-full object-cover md:col-span-1 lg:col-span-3"
 			/>
-			{/* <SignUp /> */}
+			{/* <SignIn /> */}
 		</div>
 	);
 };

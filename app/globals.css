@@ -86,3 +86,35 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+.cl-internal-b3fm6y {
+	display: none !important;
+}
+
+.cl-rootBox {
+	width: 100% !important;
+}
+
+.cl-card {
+	background: none !important;
+	box-shadow: none !important;
+	gap: 0 !important;
+	padding: 0 !important;
+	width: 100% !important;
+	margin: 0 !important;
+	max-width: 100% !important;
+}
+
+.cl-headerTitle,
+.cl-headerSubtitle {
+	display: none !important;
+}
+
+.cl-socialButtons {
+	grid-template-columns: 1fr !important;
+	/* width: 100% !important; */
+}
+
+.cl-footer {
+	margin-top: 10px;
+}
