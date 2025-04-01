@@ -7,7 +7,6 @@ import {
 	CartesianGrid,
 	Cell,
 	LabelList,
-	Tooltip,
 	XAxis,
 	YAxis,
 } from "recharts";
@@ -25,44 +24,8 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Label, Pie, PieChart } from "recharts";
+import { Pie, PieChart } from "recharts";
 import { useMemo } from "react";
-
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A020F0"];
-
-const chartConfig = {
-	visitors: {
-		label: "Visitors",
-	},
-	chrome: {
-		label: "Chrome",
-		color: "hsl(var(--chart-1))",
-	},
-	safari: {
-		label: "Safari",
-		color: "hsl(var(--chart-2))",
-	},
-	firefox: {
-		label: "Firefox",
-		color: "hsl(var(--chart-3))",
-	},
-	edge: {
-		label: "Edge",
-		color: "hsl(var(--chart-4))",
-	},
-	other: {
-		label: "Other",
-		color: "hsl(var(--chart-5))",
-	},
-} satisfies ChartConfig;
-
-const chartData = [
-	{ browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-	{ browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-	{ browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-	{ browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-	{ browser: "other", visitors: 190, fill: "var(--color-other)" },
-];
 
 export function WorkoutCharts({ cardios }: { cardios: any }) {
 	const intensityData = useMemo(() => {
@@ -83,30 +46,20 @@ export function WorkoutCharts({ cardios }: { cardios: any }) {
 		}));
 	}, [cardios]);
 
-	const totalVisitors = useMemo(() => {
-		return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
-	}, []);
-
 	const heartRateData = cardios.map((session: any) => ({
-		session: new Date(session.createdAt).toLocaleTimeString([], {
+		session: new Date(session.createdAt).toLocaleTimeString("en-US", {
 			year: "numeric",
 			month: "short",
 			day: "numeric",
-			hour: "2-digit",
-			minute: "2-digit",
-			hour12: true,
 		}),
 		heartRate: Number(session.heartRate),
 	}));
 
 	const caloriesData = cardios.map((session: any) => ({
-		session: new Date(session.createdAt).toLocaleString("en-US", {
+		session: new Date(session.createdAt).toLocaleString([], {
 			year: "numeric",
 			month: "short",
 			day: "numeric",
-			hour: "2-digit",
-			minute: "2-digit",
-			hour12: true,
 		}),
 		caloriesBurned: Number(session.caloriesBurned),
 	}));
@@ -140,6 +93,8 @@ export function WorkoutCharts({ cardios }: { cardios: any }) {
 								tickLine={false}
 								tickMargin={10}
 								axisLine={false}
+								angle={-45}
+								textAnchor="end"
 							/>
 							<YAxis tickLine={false} axisLine={false} />
 							<ChartTooltip
