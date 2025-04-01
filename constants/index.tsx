@@ -21,11 +21,11 @@ export const navLinks = [
 		href: "/progress",
 		icon: "/assets/icons/reports.svg",
 	},
-	{
-		label: "Reports & Insights",
-		href: "/reports",
-		icon: "/assets/icons/graph.svg",
-	},
+	// {
+	// 	label: "Reports & Insights",
+	// 	href: "/reports",
+	// 	icon: "/assets/icons/graph.svg",
+	// },
 	{
 		label: "Profile & Settings",
 		href: "/profile",

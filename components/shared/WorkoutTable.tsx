@@ -8,6 +8,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
+import { PaginationSection } from "../Pagination";
 
 const invoices = [
 	{
@@ -124,6 +125,11 @@ export function WorkoutTable({
 					))}
 				</TableBody>
 			</Table>
+			{limit !== 0 && (
+				<div className="my-8">
+					<PaginationSection />
+				</div>
+			)}
 		</div>
 	);
 }

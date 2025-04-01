@@ -1,14 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
-
-import Link from "next/link";
-import { motion } from "motion/react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Logo from "./Logo";
 import { navLinks } from "@/constants";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "motion/react";
 
 export function LeftSidebar({ children }: any) {
 	const [open, setOpen] = useState(false);
@@ -29,7 +27,6 @@ export function LeftSidebar({ children }: any) {
 								const isActive =
 									pathname === link.href ||
 									pathname.startsWith(`${link.href}/`);
-								console.log(isActive);
 								return (
 									<SidebarLink
 										key={idx}
@@ -43,21 +40,36 @@ export function LeftSidebar({ children }: any) {
 						</div>
 					</div>
 					<div>
-						{/* <SidebarLink
-							link={{
-								label: "Manu Arora",
-								href: "#",
-								icon: (
-									<Image
-										src="https://assets.aceternity.com/manu.png"
-										className="h-7 w-7 shrink-0 rounded-full"
-										width={50}
-										height={50}
-										alt="Avatar"
-									/>
-								),
-							}}
-						/> */}
+						<div
+							className={cn(
+								"group flex items-center justify-start gap-2  group/sidebar py-2"
+							)}
+							onClick={() => setOpen(!open)}
+						>
+							<Image
+								src={"/assets/images/sample-img.jpeg"}
+								alt={"Profile picture"}
+								width={1000}
+								height={1000}
+								className="w-14 h-14 rounded-full object-cover"
+							/>
+
+							<motion.span
+								// animate={{
+								// 	display: animate
+								// 		? open
+								// 			? "inline-block"
+								// 			: "none"
+								// 		: "inline-block",
+								// 	opacity: animate ? (open ? 1 : 0) : 1,
+								// }}
+								className={cn(
+									"text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0 uppercase font-medium group-hover:text-primary"
+								)}
+							>
+								Tomiwa Adelae
+							</motion.span>
+						</div>
 					</div>
 				</SidebarBody>
 			</Sidebar>
@@ -67,7 +79,7 @@ export function LeftSidebar({ children }: any) {
 				}}
 				className="overflow-y-auto  bg-no-repeat bg-left bg-cover w-full h-full"
 			>
-				<div className="container py-4">{children}</div>
+				<div className="container py-8">{children}</div>
 			</div>
 		</div>
 	);
