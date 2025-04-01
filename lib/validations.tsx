@@ -2,20 +2,18 @@ import { z } from "zod";
 import { isValidPhoneNumber } from "react-phone-number-input";
 
 export const NewCardioFormSchema = z.object({
-	workoutType: z.string().min(2, {
+	type: z.string().min(2, {
 		message: "Workout type is required.",
 	}),
 	duration: z.string().min(2, {
-		message: "Workout type is required.",
+		message: "Workout duration is required.",
 	}),
-	distance: z.string().min(2, {
-		message: "Workout type is required.",
-	}),
+	distance: z.string().optional(),
 	caloriesBurned: z.string().min(2, {
-		message: "Workout type is required.",
+		message: "Calories burned is required.",
 	}),
 	heartRate: z.string().min(2, {
-		message: "Workout type is required.",
+		message: "Heart rate is required.",
 	}),
 	intensity: z.enum(["Low", "Moderate", "High"], {
 		required_error: "You need to select a intensity type.",

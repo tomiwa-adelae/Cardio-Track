@@ -1,14 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Logo from "./Logo";
 import { navLinks } from "@/constants";
-import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "motion/react";
+import { usePathname, useRouter } from "next/navigation";
+import { motion } from "motion/react";
+import { useClerk } from "@clerk/nextjs";
 
-export function LeftSidebar({ children }: any) {
+export function LeftSidebar({
+	children,
+	user,
+}: {
+	children: ReactNode;
+	user: any;
+}) {
+	const router = useRouter();
+	const { signOut } = useClerk();
 	const [open, setOpen] = useState(false);
 	const pathname = usePathname();
 	return (
@@ -37,6 +46,32 @@ export function LeftSidebar({ children }: any) {
 									/>
 								);
 							})}
+							<div
+								className={cn(
+									"group flex items-center justify-start gap-2  group/sidebar py-2"
+								)}
+								onClick={async () => {
+									await signOut();
+									router.push("/sign-in");
+									setOpen(!open);
+								}}
+							>
+								<Image
+									src={"/assets/icons/logout.svg"}
+									alt={`Logout icon`}
+									width={1000}
+									height={1000}
+									className="w-5 h-5"
+								/>
+
+								<motion.span
+									className={cn(
+										"text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0 uppercase font-medium group-hover:text-secondary cursor-pointer"
+									)}
+								>
+									Logout
+								</motion.span>
+							</div>
 						</div>
 					</div>
 					<div>
@@ -47,27 +82,19 @@ export function LeftSidebar({ children }: any) {
 							onClick={() => setOpen(!open)}
 						>
 							<Image
-								src={"/assets/images/sample-img.jpeg"}
-								alt={"Profile picture"}
+								src={user?.picture}
+								alt={`${user?.firstName} ${user?.lastName}' picture`}
 								width={1000}
 								height={1000}
 								className="w-14 h-14 rounded-full object-cover"
 							/>
 
 							<motion.span
-								// animate={{
-								// 	display: animate
-								// 		? open
-								// 			? "inline-block"
-								// 			: "none"
-								// 		: "inline-block",
-								// 	opacity: animate ? (open ? 1 : 0) : 1,
-								// }}
 								className={cn(
 									"text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0 uppercase font-medium group-hover:text-primary"
 								)}
 							>
-								Tomiwa Adelae
+								{user?.firstName} {user?.lastName}
 							</motion.span>
 						</div>
 					</div>

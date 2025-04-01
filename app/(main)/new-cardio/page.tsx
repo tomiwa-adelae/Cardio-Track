@@ -1,8 +1,14 @@
 import { NewCardioForm } from "@/components/forms/NewCardioForm";
 import SectionHeader from "@/components/shared/SectionHeader";
+import { getUserInfo } from "@/lib/actions/user.actions";
+import { auth } from "@clerk/nextjs";
 import React from "react";
 
-const page = () => {
+const page = async () => {
+	const { userId } = auth();
+
+	const user = await getUserInfo(userId!);
+
 	return (
 		<div>
 			<SectionHeader
@@ -11,7 +17,7 @@ const page = () => {
 					"Track your progress and stay on top of your cardio goals!"
 				}
 			/>
-			<NewCardioForm />
+			<NewCardioForm userId={user?.user?._id} />
 		</div>
 	);
 };

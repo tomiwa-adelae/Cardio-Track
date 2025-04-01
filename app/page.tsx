@@ -16,9 +16,9 @@ const page = () => {
 					<div className="flex items-center justify-between w-full">
 						<Logo />
 						<div>
-							<SignedIn>
+							{/* <SignedIn>
 								<UserButton />
-							</SignedIn>
+							</SignedIn> */}
 						</div>
 					</div>
 					<div className="flex-1 py-16 flex flex-col md:items-center justify-center md:text-center">

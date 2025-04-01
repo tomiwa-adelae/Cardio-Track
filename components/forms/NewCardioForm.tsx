@@ -26,14 +26,49 @@ import {
 import { workoutIntensities, workoutType } from "@/constants";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "../ui/textarea";
+import { createCardioSession } from "@/lib/actions/cardio.actions";
+import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
-export function NewCardioForm() {
+export function NewCardioForm({ userId }: { userId: string }) {
+	const router = useRouter();
+
 	const form = useForm<z.infer<typeof NewCardioFormSchema>>({
 		resolver: zodResolver(NewCardioFormSchema),
 		defaultValues: {},
 	});
 
-	function onSubmit(data: z.infer<typeof NewCardioFormSchema>) {}
+	async function onSubmit(data: z.infer<typeof NewCardioFormSchema>) {
+		try {
+			const details = { ...data };
+
+			console.log(details);
+
+			const res = await createCardioSession({ details, userId });
+
+			if (res?.status === 400)
+				return toast({
+					title: "Error!",
+					description: res?.message,
+					variant: "destructive",
+				});
+
+			toast({
+				title: "Success!",
+				description: res?.message,
+			});
+
+			router.push(`/new-cardio/${res.cardio?._id}/success`);
+		} catch (error) {
+			toast({
+				title: "Error!",
+				description: "An error occurred!",
+				variant: "destructive",
+			});
+		}
+	}
+
+	const type = form.watch("type");
 
 	return (
 		<div className="mt-8">
@@ -44,7 +79,7 @@ export function NewCardioForm() {
 				>
 					<FormField
 						control={form.control}
-						name="workoutType"
+						name="type"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Workout type</FormLabel>
@@ -90,22 +125,24 @@ export function NewCardioForm() {
 							</FormItem>
 						)}
 					/>
-					<FormField
-						control={form.control}
-						name="distance"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Distance covered (km)</FormLabel>
-								<FormControl>
-									<Input
-										placeholder="Example: 5.2"
-										{...field}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
+					{["Running", "Walking", "Cycling"].includes(type) && (
+						<FormField
+							control={form.control}
+							name="distance"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Distance covered (km)</FormLabel>
+									<FormControl>
+										<Input
+											placeholder="Example: 5.2"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					)}
 					<FormField
 						control={form.control}
 						name="caloriesBurned"
@@ -190,8 +227,13 @@ export function NewCardioForm() {
 							</FormItem>
 						)}
 					/>
-					<Button className="rounded-full" size={"lg"} type="submit">
-						Submit
+					<Button
+						disabled={form.formState.isSubmitting}
+						className="rounded-full"
+						size={"lg"}
+						type="submit"
+					>
+						{form.formState.isSubmitting ? "Submitting" : "Submit"}
 					</Button>
 				</form>
 			</Form>

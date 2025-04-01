@@ -1,10 +1,3 @@
-import {
-	IconArrowLeft,
-	IconBrandTabler,
-	IconSettings,
-	IconUserBolt,
-} from "@tabler/icons-react";
-
 export const navLinks = [
 	{
 		label: "Dashboard",
@@ -61,11 +54,11 @@ export const stats = [
 ];
 
 export const workoutType = [
-	"Running 🏃‍♂️",
-	"Walking 🚶‍♂️",
-	"Cycling 🚴‍♂️",
-	"Jump Rope 🔄",
-	"Treadmill 🏋️‍♂️",
+	"Running",
+	"Walking",
+	"Cycling",
+	"Jump Rope",
+	"Treadmill",
 ];
 
 export const workoutIntensities = ["Low", "Moderate", "High"];
