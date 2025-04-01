@@ -14,7 +14,7 @@ const CardioCard = ({
 	details: string;
 }) => {
 	return (
-		<div className="shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] bg-white rounded-lg p-8 flex md:flex-col lg:flex-row items-center justify-start gap-4">
+		<div className="shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] bg-white rounded-lg p-8 flex md:flex-col lg:flex-row items-start justify-start gap-4">
 			<Image
 				src={icon}
 				alt={`${title} icon`}

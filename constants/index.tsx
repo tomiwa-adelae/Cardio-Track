@@ -64,3 +64,5 @@ export const workoutType = [
 export const workoutIntensities = ["Low", "Moderate", "High"];
 
 export const genders = ["Male", "Female"];
+
+export const CARDIO_LIMIT = 10;

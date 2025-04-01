@@ -21,8 +21,6 @@ const page = async ({ params }: { params: { id: string } }) => {
 
 	if (cardio?.status !== 200) redirect("/not-authorized");
 
-	console.log(cardio);
-
 	return (
 		<div>
 			<SectionHeader
@@ -35,7 +33,7 @@ const page = async ({ params }: { params: { id: string } }) => {
 			<Separator className="my-8" />
 			<div className="flex flex-wrap items-center justify-start gap-4">
 				<Button asChild size={"lg"}>
-					<Link href="/dashboard">View Progress</Link>
+					<Link href="/progress">View Progress</Link>
 				</Button>
 				<Button variant={"green"} asChild size={"lg"}>
 					<Link href="/new-cardio">Log Another Session</Link>

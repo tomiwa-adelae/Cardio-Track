@@ -88,11 +88,13 @@ const invoices = [
 export function WorkoutTable({
 	title,
 	limit,
+	cardios,
 }: {
 	title: string;
 	limit?: number;
+	cardios: any;
 }) {
-	const displayedWorkouts = limit ? invoices.slice(0, limit) : invoices;
+	const displayedWorkouts = limit ? cardios.slice(0, limit) : cardios;
 
 	return (
 		<div>
@@ -109,17 +111,17 @@ export function WorkoutTable({
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					{displayedWorkouts.map((invoice: any, index: number) => (
+					{displayedWorkouts.map((cardio: any, index: number) => (
 						<TableRow key={index}>
 							<TableCell className="font-medium">
-								{invoice.date}
+								{cardio.date}
 							</TableCell>
-							<TableCell>{invoice.workoutType}</TableCell>
-							<TableCell>{invoice.duration}</TableCell>
-							<TableCell>{invoice.distance}</TableCell>
-							<TableCell>{invoice.calories}</TableCell>
+							<TableCell>{cardio.type}</TableCell>
+							<TableCell>{cardio.duration} minutes</TableCell>
+							<TableCell>{cardio.distance} km</TableCell>
+							<TableCell>{cardio.caloriesBurned} kcal</TableCell>
 							<TableCell className="text-right capitalize">
-								{invoice.intensity}
+								{cardio.intensity}
 							</TableCell>
 						</TableRow>
 					))}

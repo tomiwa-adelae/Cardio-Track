@@ -10,6 +10,8 @@ interface ICardio extends Document {
 	heartRate?: string;
 	intensity: string;
 	additionalNotes?: string;
+	createdAt?: Date;
+	updatedAt?: Date;
 }
 
 // Define Mongoose Schema with Type Safety

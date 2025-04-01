@@ -42,8 +42,6 @@ export function NewCardioForm({ userId }: { userId: string }) {
 		try {
 			const details = { ...data };
 
-			console.log(details);
-
 			const res = await createCardioSession({ details, userId });
 
 			if (res?.status === 400)
@@ -58,7 +56,7 @@ export function NewCardioForm({ userId }: { userId: string }) {
 				description: res?.message,
 			});
 
-			router.push(`/new-cardio/${res.cardio?._id}/success`);
+			router.push(`/new-cardio/${res.cardio?._id}?success=true`);
 		} catch (error) {
 			toast({
 				title: "Error!",
