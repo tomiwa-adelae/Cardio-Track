@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getCardioDetails } from "@/lib/actions/cardio.actions";
 import { getUserInfo } from "@/lib/actions/user.actions";
+import { formatTimestamp } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -38,7 +38,9 @@ const page = async ({
 						? `Cardio Session Logged Successfully!`
 						: "Cardio Session Details"
 				}
-				description={"Date & Time: March 31, 2025, 10:15 AM"}
+				description={`Date & Time: ${formatTimestamp(
+					cardio?.cardio.createdAt
+				)}`}
 			/>
 			<SummaryCardio cardio={cardio?.cardio} />
 			<Separator className="my-8" />

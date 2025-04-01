@@ -1,3 +1,8 @@
+import {
+	getAverageHeartRate,
+	getTotalCaloriesBurned,
+	getTotalDistanceCovered,
+} from "@/lib/utils";
 import StatsBox from "./StatsBox";
 
 const Stats = ({ cardios }: any) => {
@@ -13,19 +18,19 @@ const Stats = ({ cardios }: any) => {
 				icon={"/assets/icons/fire.svg"}
 				title={"kcal"}
 				description={"Total calories burned"}
-				number={cardios?.length}
+				number={getTotalCaloriesBurned(cardios)}
 			/>
 			<StatsBox
 				icon={"/assets/icons/running.svg"}
 				title={"km"}
 				description={"Total distance covered"}
-				number={cardios?.length}
+				number={getTotalDistanceCovered(cardios)}
 			/>
 			<StatsBox
 				icon={"/assets/icons/heart.svg"}
 				title={"BPM"}
 				description={"Average heart rate"}
-				number={cardios?.length}
+				number={getAverageHeartRate(cardios)}
 			/>
 		</div>
 	);

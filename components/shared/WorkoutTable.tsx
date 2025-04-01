@@ -9,81 +9,8 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 import { PaginationSection } from "../Pagination";
-
-const invoices = [
-	{
-		date: "25 Mar 2025",
-		workoutType: "Running",
-		duration: "45 minutes",
-		distance: "6.2km",
-		calories: "680kcal",
-		intensity: "high",
-	},
-	{
-		date: "25 Mar 2025",
-		workoutType: "Running",
-		duration: "45 minutes",
-		distance: "6.2km",
-		calories: "680kcal",
-		intensity: "high",
-	},
-	{
-		date: "25 Mar 2025",
-		workoutType: "Running",
-		duration: "45 minutes",
-		distance: "6.2km",
-		calories: "680kcal",
-		intensity: "high",
-	},
-	{
-		date: "25 Mar 2025",
-		workoutType: "Running",
-		duration: "45 minutes",
-		distance: "6.2km",
-		calories: "680kcal",
-		intensity: "high",
-	},
-	{
-		date: "25 Mar 2025",
-		workoutType: "Running",
-		duration: "45 minutes",
-		distance: "6.2km",
-		calories: "680kcal",
-		intensity: "high",
-	},
-	{
-		date: "25 Mar 2025",
-		workoutType: "Running",
-		duration: "45 minutes",
-		distance: "6.2km",
-		calories: "680kcal",
-		intensity: "high",
-	},
-	{
-		date: "25 Mar 2025",
-		workoutType: "Running",
-		duration: "45 minutes",
-		distance: "6.2km",
-		calories: "680kcal",
-		intensity: "high",
-	},
-	{
-		date: "25 Mar 2025",
-		workoutType: "Running",
-		duration: "45 minutes",
-		distance: "6.2km",
-		calories: "680kcal",
-		intensity: "high",
-	},
-	{
-		date: "25 Mar 2025",
-		workoutType: "Running",
-		duration: "45 minutes",
-		distance: "6.2km",
-		calories: "680kcal",
-		intensity: "high",
-	},
-];
+import { formatDate } from "@/lib/utils";
+import Link from "next/link";
 
 export function WorkoutTable({
 	title,
@@ -103,7 +30,7 @@ export function WorkoutTable({
 				<TableHeader>
 					<TableRow>
 						<TableHead>Date</TableHead>
-						<TableHead>Workout type</TableHead>
+						<TableHead>Type</TableHead>
 						<TableHead>Duration</TableHead>
 						<TableHead>Distance</TableHead>
 						<TableHead>Calories</TableHead>
@@ -114,7 +41,12 @@ export function WorkoutTable({
 					{displayedWorkouts.map((cardio: any, index: number) => (
 						<TableRow key={index}>
 							<TableCell className="font-medium">
-								{cardio.date}
+								<Link
+									className="hover:underline text-primary transition-all"
+									href={`/new-cardio/${cardio?._id}`}
+								>
+									{formatDate(cardio.createdAt)}
+								</Link>
 							</TableCell>
 							<TableCell>{cardio.type}</TableCell>
 							<TableCell>{cardio.duration} minutes</TableCell>
@@ -127,7 +59,7 @@ export function WorkoutTable({
 					))}
 				</TableBody>
 			</Table>
-			{limit !== 0 && (
+			{limit !== 0 && cardios.length >= 10 && (
 				<div className="my-8">
 					<PaginationSection />
 				</div>

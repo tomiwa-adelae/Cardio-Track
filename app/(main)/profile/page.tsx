@@ -2,10 +2,12 @@ import { ProfileSettingsForm } from "@/components/forms/ProfileSettingsForm";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
-import React from "react";
+import { getUserInfo } from "@/lib/actions/user.actions";
+import { auth } from "@clerk/nextjs";
 
-const page = () => {
+const page = async () => {
+	const { userId } = auth();
+	const user = await getUserInfo(userId!);
 	return (
 		<div>
 			<SectionHeader
@@ -14,7 +16,15 @@ const page = () => {
 					"Manage your account details, update health preferences, and customize your experience."
 				}
 			/>
-			<ProfileSettingsForm />
+			<ProfileSettingsForm
+				picture={user?.user?.picture}
+				firstName={user?.user?.firstName}
+				lastName={user?.user?.lastName}
+				email={user?.user?.email}
+				phoneNumber={user?.user?.phoneNumber}
+				gender={user?.user?.gender}
+				userId={user?.user?._id}
+			/>
 			<Separator className="my-8" />
 			<div>
 				<h3 className="font-medium text-lg mb-4 uppercase">
@@ -27,7 +37,7 @@ const page = () => {
 					account deletion if needed. Your data security is our
 					priority!
 				</p>
-				<div className="flex items-center justify-start gap-4 mt-4">
+				<div className="flex flex-wrap items-center justify-start gap-4 mt-4">
 					<Button size={"lg"}>Export workout data</Button>
 					<Button variant={"secondary"} size={"lg"}>
 						Delete account

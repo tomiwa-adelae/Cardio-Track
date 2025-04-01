@@ -237,14 +237,14 @@ export const getCardios = async ({
 			.skip(skipAmount)
 			.limit(limit);
 
-		const listCount = await Cardio.countDocuments({
+		const cardioCount = await Cardio.countDocuments({
 			...keyword,
 			user: userId,
 		});
 
 		return {
 			data: JSON.parse(JSON.stringify(lists)),
-			totalPages: Math.ceil(listCount / limit),
+			totalPages: Math.ceil(cardioCount / limit),
 			status: 200,
 		};
 	} catch (error: any) {

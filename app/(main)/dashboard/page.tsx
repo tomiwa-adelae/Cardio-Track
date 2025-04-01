@@ -1,3 +1,4 @@
+import NewUserBox from "@/components/NewUserBox";
 import SectionHeader from "@/components/shared/SectionHeader";
 import Stats from "@/components/shared/Stats";
 import { WorkoutTable } from "@/components/shared/WorkoutTable";
@@ -27,24 +28,32 @@ const page = async ({ searchParams }: SearchParamProps) => {
 
 	if (cardios.status === 400) redirect("/not-found");
 
+	console.log("CARDIOS", cardios);
+
 	return (
 		<div>
-			<SectionHeader
-				title={"Welcome back, Steve."}
-				description={
-					"Your heart health journey is on track. Keep pushing!"
-				}
-			/>
-			<Stats />
-			<Separator className="my-8" />
-			<WorkoutTable
-				cardios={cardios.data}
-				title="Recent workout table"
-				limit={3}
-			/>
-			<Button size={"lg"} className="mt-10" asChild>
-				<Link href="/new-cardio">+ Log new cardio sesion</Link>
-			</Button>
+			{cardios?.data.length === 0 ? (
+				<NewUserBox />
+			) : (
+				<>
+					<SectionHeader
+						title={`Welcome back, ${user?.user?.firstName}.`}
+						description={
+							"Your heart health journey is on track. Keep pushing!"
+						}
+					/>
+					<Stats cardios={cardios.data} />
+					<Separator className="my-8" />
+					<WorkoutTable
+						cardios={cardios.data}
+						title="Recent workout table"
+						limit={3}
+					/>
+					<Button size={"lg"} className="mt-10" asChild>
+						<Link href="/new-cardio">+ Log new cardio sesion</Link>
+					</Button>
+				</>
+			)}
 		</div>
 	);
 };

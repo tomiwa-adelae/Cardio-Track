@@ -1,3 +1,4 @@
+import { formatTimestamp } from "@/lib/utils";
 import CardioCard from "./CardioCard";
 
 const SummaryCardio = ({ cardio }: { cardio: any }) => {
@@ -6,7 +7,7 @@ const SummaryCardio = ({ cardio }: { cardio: any }) => {
 			<CardioCard
 				icon={"/assets/icons/calendar.svg"}
 				title={"Date & Time"}
-				details="March 31, 2025, 10:15 AM"
+				details={`${formatTimestamp(cardio?.createdAt)}`}
 			/>
 			<CardioCard
 				icon={

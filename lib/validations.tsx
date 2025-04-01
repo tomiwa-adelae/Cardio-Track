@@ -36,8 +36,12 @@ export const ProfileSettingsFormSchema = z.object({
 		.regex(/^(\+?\d{10,15})$/, { message: "Enter a valid phone number." })
 		.refine(isValidPhoneNumber, {
 			message: "Invalid phone number",
-		}),
-	gender: z.string().min(2, {
-		message: "Gender must be either Male or Female.",
-	}),
+		})
+		.optional(),
+	gender: z
+		.string()
+		.min(2, {
+			message: "Gender must be either Male or Female.",
+		})
+		.optional(),
 });

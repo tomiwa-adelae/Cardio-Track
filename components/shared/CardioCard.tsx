@@ -4,6 +4,7 @@ const inknut = Inknut_Antiqua({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
+
 const CardioCard = ({
 	title,
 	icon,

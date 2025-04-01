@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -23,26 +22,77 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import { genders, workoutIntensities, workoutType } from "@/constants";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Textarea } from "../ui/textarea";
+import { genders } from "@/constants";
 import Image from "next/image";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { toast } from "@/hooks/use-toast";
+import { updateUser } from "@/lib/actions/user.actions";
+import { useState } from "react";
+import Link from "next/link";
 
-export function ProfileSettingsForm() {
+export function ProfileSettingsForm({
+	picture,
+	firstName,
+	lastName,
+	email,
+	phoneNumber,
+	gender,
+	userId,
+}: {
+	firstName: string;
+	lastName: string;
+	email: string;
+	picture: string;
+	phoneNumber: string;
+	gender: string;
+	userId: string;
+}) {
+	const [success, setSuccess] = useState(false);
+
 	const form = useForm<z.infer<typeof ProfileSettingsFormSchema>>({
 		resolver: zodResolver(ProfileSettingsFormSchema),
-		defaultValues: {},
+		defaultValues: {
+			firstName: firstName || "",
+			lastName: lastName || "",
+			email: email || "",
+			phoneNumber: phoneNumber || "",
+			gender: gender || "",
+		},
 	});
 
-	function onSubmit(data: z.infer<typeof ProfileSettingsFormSchema>) {}
+	async function onSubmit(data: z.infer<typeof ProfileSettingsFormSchema>) {
+		try {
+			const details = { ...data };
+
+			const res = await updateUser({ details, userId });
+
+			if (res?.status === 400)
+				return toast({
+					title: "Error!",
+					description: res?.message,
+					variant: "destructive",
+				});
+
+			toast({
+				title: "Success!",
+				description: res?.message,
+			});
+			setSuccess(true);
+		} catch (error) {
+			toast({
+				title: "Error!",
+				description: "An error occurred!",
+				variant: "destructive",
+			});
+		}
+	}
 
 	return (
 		<div className="mt-8">
 			<Image
-				src={"/assets/images/sample-img.jpeg"}
-				alt={"profile picture"}
+				src={picture}
+				alt={`${firstName} ${lastName}'s profile picture`}
 				width={1000}
 				height={1000}
 				className="rounded-full object-cover h-40 w-40 md:h-52 md:w-52 lg:h-60 lg:w-60"
@@ -88,6 +138,7 @@ export function ProfileSettingsForm() {
 								<FormLabel>Email</FormLabel>
 								<FormControl>
 									<Input
+										disabled
 										type="email"
 										placeholder="john@example.com"
 										{...field}
@@ -151,9 +202,30 @@ export function ProfileSettingsForm() {
 							</FormItem>
 						)}
 					/>
-					<Button className="rounded-full" size={"lg"} type="submit">
-						Submit
-					</Button>
+					<div className="flex flex-wrap items-center justify-start gap-4">
+						<Button
+							variant={success ? "outline" : "default"}
+							className="rounded-full"
+							size={"lg"}
+							type="submit"
+							disabled={form.formState.isSubmitting}
+						>
+							{form.formState.isSubmitting
+								? "Submitting..."
+								: "Submit"}
+						</Button>
+						{success && (
+							<Button
+								asChild
+								className="rounded-full"
+								size={"lg"}
+							>
+								<Link href="/dashboard">
+									Go back to dashboard
+								</Link>
+							</Button>
+						)}
+					</div>
 				</form>
 			</Form>
 		</div>

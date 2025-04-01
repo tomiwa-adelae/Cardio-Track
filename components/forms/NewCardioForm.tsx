@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -231,7 +230,9 @@ export function NewCardioForm({ userId }: { userId: string }) {
 						size={"lg"}
 						type="submit"
 					>
-						{form.formState.isSubmitting ? "Submitting" : "Submit"}
+						{form.formState.isSubmitting
+							? "Submitting..."
+							: "Submit"}
 					</Button>
 				</form>
 			</Form>

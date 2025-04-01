@@ -34,7 +34,7 @@ const page = async ({ searchParams }: SearchParamProps) => {
 				}
 			/>
 			<Stats cardios={cardios.data} />
-			<WorkoutCharts />
+			<WorkoutCharts cardios={cardios.data} />
 			<WorkoutTable cardios={cardios.data} title="Workout history" />
 			<Button size={"lg"} className="mt-10">
 				Export reports

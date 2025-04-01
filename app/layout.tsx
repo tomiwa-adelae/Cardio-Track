@@ -23,7 +23,8 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="en">
 				<body className={montserrat.className}>
-					{children} <Toaster />
+					{children}
+					<Toaster />
 				</body>
 			</html>
 		</ClerkProvider>
