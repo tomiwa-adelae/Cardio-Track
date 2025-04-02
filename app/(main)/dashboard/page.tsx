@@ -28,8 +28,6 @@ const page = async ({ searchParams }: SearchParamProps) => {
 
 	if (cardios.status === 400) redirect("/not-found");
 
-	console.log("CARDIOS", cardios);
-
 	return (
 		<div>
 			{cardios?.data.length === 0 ? (
