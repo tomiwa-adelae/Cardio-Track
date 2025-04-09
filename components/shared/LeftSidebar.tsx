@@ -29,7 +29,7 @@ export function LeftSidebar({
 		>
 			<Sidebar open={open} setOpen={setOpen} animate={false}>
 				<SidebarBody className="justify-between gap-10">
-					<div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
+					<div className="flex flex-1 flex-col overflow-x-hidden overflow-y-scroll">
 						<Logo />
 						<div className="mt-8 flex flex-col gap-4">
 							{navLinks.map((link, idx) => {
@@ -104,7 +104,7 @@ export function LeftSidebar({
 				style={{
 					backgroundImage: `url(/assets/images/bg.png)`,
 				}}
-				className="overflow-y-auto  bg-no-repeat bg-left bg-cover w-full h-full"
+				className="overflow-y-scroll bg-no-repeat bg-left bg-cover w-full h-full"
 			>
 				<div className="container py-8">{children}</div>
 			</div>

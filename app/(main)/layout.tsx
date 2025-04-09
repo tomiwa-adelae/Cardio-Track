@@ -19,7 +19,7 @@ export default async function MainLayout({
 	if (user?.status !== 200) redirect("/not-authorized");
 
 	return (
-		<div className="overflow-hidden">
+		<div>
 			<LeftSidebar user={user?.user} children={children} />
 		</div>
 	);

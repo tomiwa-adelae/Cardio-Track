@@ -120,7 +120,7 @@
 }
 
 body {
-	overflow-y: hidden !important;
+	/* overflow-y: hidden !important; */
 }
 
 .PhoneInput input {
