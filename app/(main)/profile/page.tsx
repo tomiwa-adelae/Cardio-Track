@@ -5,6 +5,16 @@ import { Separator } from "@/components/ui/separator";
 import { getUserInfo } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Profile Settings – Cardio Track | Manage Your Fitness Preferences",
+	description:
+		"Update your personal information, manage units, adjust privacy settings, and control your cardio tracking experience.",
+	keywords:
+		"update profile, cardio preferences, fitness app settings, change workout info, account settings",
+};
+
 const page = async () => {
 	const { userId } = auth();
 	const user = await getUserInfo(userId!);

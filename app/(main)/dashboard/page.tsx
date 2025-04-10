@@ -11,6 +11,16 @@ import { auth } from "@clerk/nextjs";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Dashboard – Cardio Track | Your Fitness At a Glance",
+	description:
+		"Access your personalized cardio dashboard. View total workouts, average heart rate, calories burned, and track progress with smart insights.",
+	keywords:
+		"fitness dashboard, cardio progress, workout summary, heart rate chart, calories burned",
+};
+
 const page = async ({ searchParams }: SearchParamProps) => {
 	const { userId } = auth();
 

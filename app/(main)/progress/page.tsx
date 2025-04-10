@@ -9,6 +9,16 @@ import { getUserInfo } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "View Progress – Cardio Track | Visualize Your Fitness Trends",
+	description:
+		"Analyze your heart rate, calories burned, and workout intensity over time. Use interactive charts to monitor your fitness journey.",
+	keywords:
+		"workout trends, progress tracker, cardio analytics, heart rate graph, fitness insights",
+};
+
 const page = async ({ searchParams }: SearchParamProps) => {
 	const { userId } = auth();
 

@@ -8,6 +8,16 @@ const inknut = Inknut_Antiqua({
 	weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Sign Up – Cardio Track | Create Your Free Fitness Account",
+	description:
+		"Join Cardio Track and start monitoring your fitness. Sign up to log cardio sessions, track heart rate, calories, and improve your wellness.",
+	keywords:
+		"sign up cardio app, fitness tracker registration, create workout account, log cardio sessions",
+};
+
 const page = () => {
 	return (
 		<div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-5 h-screen">
