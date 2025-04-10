@@ -16,6 +16,8 @@ const StatsBox = ({
 	description: string;
 	number: string | number;
 }) => {
+	console.log(number);
+
 	return (
 		<div className="shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] bg-white rounded-lg p-8 flex md:flex-col lg:flex-row items-center justify-start gap-4">
 			<Image
@@ -27,7 +29,9 @@ const StatsBox = ({
 			/>
 			<div className="space-y-1 md:text-center lg:text-left">
 				<h4 className="text-3xl font-medium">
-					<span className={`${inknut.className}`}>{number}/</span>
+					<span className={`${inknut.className}`}>
+						{number === "NaN" ? 0 : number}/
+					</span>
 					<span className="text-base">{title}</span>
 				</h4>
 				<p className="text-base text-gray-700">{description}</p>

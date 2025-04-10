@@ -50,7 +50,9 @@ export function WorkoutTable({
 							</TableCell>
 							<TableCell>{cardio.type}</TableCell>
 							<TableCell>{cardio.duration} minutes</TableCell>
-							<TableCell>{cardio.distance} km</TableCell>
+							<TableCell>
+								{!cardio.distance ? 0 : cardio.distance} km
+							</TableCell>
 							<TableCell>{cardio.caloriesBurned} kcal</TableCell>
 							<TableCell className="text-right capitalize">
 								{cardio.intensity}
