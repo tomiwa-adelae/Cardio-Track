@@ -20,19 +20,34 @@ const CardioActions = ({
 			<div>
 				<h3 className="font-medium text-lg mb-4 uppercase">Actions</h3>
 				<div className="flex flex-wrap items-center justify-start gap-4">
-					<Button asChild size={"lg"}>
+					<Button className="w-full sm:w-auto" asChild size={"lg"}>
 						<Link href="/progress">View Progress</Link>
 					</Button>
-					<Button variant={"green"} asChild size={"lg"}>
+					<Button
+						className="w-full sm:w-auto"
+						variant={"green"}
+						asChild
+						size={"lg"}
+					>
 						<Link href="/new-cardio">Log Another Session</Link>
 					</Button>
 					{success && (
-						<Button variant={"outline"} asChild size={"lg"}>
+						<Button
+							className="w-full sm:w-auto"
+							variant={"outline"}
+							asChild
+							size={"lg"}
+						>
 							<Link href="/dashboard">Return to Dashboard</Link>
 						</Button>
 					)}
 					{!success && (
-						<Button variant={"outline"} asChild size={"lg"}>
+						<Button
+							className="w-full sm:w-auto"
+							variant={"outline"}
+							asChild
+							size={"lg"}
+						>
 							<Link href="/new-cardio?edit=true">
 								Edit Session
 							</Link>
@@ -40,6 +55,7 @@ const CardioActions = ({
 					)}
 					{!success && (
 						<Button
+							className="w-full sm:w-auto"
 							onClick={() => {
 								setOpenDeleteModal(true);
 							}}

@@ -75,7 +75,7 @@ export function DeleteCardioModal({
 								size={"lg"}
 								// onClick={closeModal}
 								variant="outline"
-								className="w-full md:w-auto"
+								className="w-full sm:w-auto"
 							>
 								Cancel
 							</Button>
@@ -85,7 +85,7 @@ export function DeleteCardioModal({
 							size={"lg"}
 							onClick={handleSubmit}
 							disabled={loading}
-							className="w-full md:w-auto"
+							className="w-full sm:w-auto"
 						>
 							{loading ? "Deleting..." : "Delete"}
 						</Button>

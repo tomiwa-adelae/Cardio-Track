@@ -1,4 +1,4 @@
-import { formatTimestamp } from "@/lib/utils";
+import { formatTimestamp, formatWithCommas } from "@/lib/utils";
 import CardioCard from "./CardioCard";
 
 const SummaryCardio = ({ cardio }: { cardio: any }) => {
@@ -34,18 +34,20 @@ const SummaryCardio = ({ cardio }: { cardio: any }) => {
 			<CardioCard
 				icon={"/assets/icons/heart.svg"}
 				title={"Average Heart Rate"}
-				details={`${cardio.heartRate} BPM`}
+				details={`${formatWithCommas(cardio.heartRate)} BPM`}
 			/>
 			<CardioCard
 				icon={"/assets/icons/fire.svg"}
 				title={"Calories Burned"}
-				details={`${cardio.caloriesBurned} kcal`}
+				details={`${formatWithCommas(cardio.caloriesBurned)} kcal`}
 			/>
-			<CardioCard
-				icon={"/assets/icons/reports.svg"}
-				title={"Notes"}
-				details={`${cardio.additionalNotes}`}
-			/>
+			{cardio.additionalNotes.length !== 0 && (
+				<CardioCard
+					icon={"/assets/icons/reports.svg"}
+					title={"Notes"}
+					details={`${cardio.additionalNotes}`}
+				/>
+			)}
 		</div>
 	);
 };

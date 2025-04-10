@@ -56,6 +56,21 @@ export function getTotalCaloriesBurned(data: any) {
 	return total.toFixed(2); // Ensure two decimal places
 }
 
+// Utility function to format numbers with commas
+export const formatWithCommas = (amount: number | string) => {
+	const num =
+		typeof amount === "string"
+			? parseFloat(amount.replace(/,/g, ""))
+			: amount;
+
+	if (isNaN(num)) return "0.00";
+
+	return num.toLocaleString(undefined, {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2,
+	});
+};
+
 export function getTotalDistanceCovered(data: any) {
 	const total = data.reduce(
 		(total: number, session: any) => total + Number(session.distance),
