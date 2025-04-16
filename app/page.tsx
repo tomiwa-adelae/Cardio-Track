@@ -36,7 +36,7 @@ const page = () => {
 							variant={"secondary"}
 							className="rounded-full"
 						>
-							<Link href="/sign-up">Get started now</Link>
+							<Link href="/sign-in">Get started now</Link>
 						</Button>
 					</div>
 				</div>
