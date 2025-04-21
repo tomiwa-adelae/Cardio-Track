@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { MobileNavbar } from "./shared/MobileNavbar";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 const Header = ({ color }: { color: string }) => {
 	const pathname = usePathname();
@@ -24,6 +25,7 @@ const Header = ({ color }: { color: string }) => {
 							pathname.startsWith(`${link.slug}/`);
 						return (
 							<Link
+								key={index}
 								className={cn(
 									"uppercase text-xs lg:text-sm font-medium",
 									isActive && "text-primary"
@@ -34,18 +36,27 @@ const Header = ({ color }: { color: string }) => {
 							</Link>
 						);
 					})}
-					<Button asChild size={"md"} className="rounded-full">
-						<Link href="/sign-in">Login</Link>
-					</Button>
+					<SignedOut>
+						<Button asChild size={"md"} className="rounded-full">
+							<Link href="/sign-in">Login</Link>
+						</Button>
+					</SignedOut>
+					<SignedIn>
+						<Button size={"md"} className="rounded-full" asChild>
+							<Link href="/dashboard">Dashboard</Link>
+						</Button>
+					</SignedIn>
 				</nav>
 				<div
 					className="md:hidden flex items-center justify-center gap-2 md:gap-4"
 					data-aos="fade-left"
 					data-aos-delay="100"
 				>
-					<Button variant={"ghost"} size={"md"} asChild>
-						<Link href="/sign-up">Sign up</Link>
-					</Button>
+					<SignedOut>
+						<Button variant={"ghost"} size={"md"} asChild>
+							<Link href="/sign-up">Sign up</Link>
+						</Button>
+					</SignedOut>
 					<MobileNavbar />
 				</div>
 			</div>

@@ -9,9 +9,6 @@ import { ColourfulText } from "./ui/colourful-text";
 const Showcase = () => {
 	return (
 		<div
-			// style={{
-			// 	backgroundImage: `url(/assets/images/landing-image.jpg)`,
-			// }}
 			className={`flex items-center justify-center bg-no-repeat bg-center bg-cover relative text-white`}
 		>
 			<video

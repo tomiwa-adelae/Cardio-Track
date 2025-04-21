@@ -73,6 +73,9 @@ export const showcaseVideo =
 export const joinVideo =
 	"https://res.cloudinary.com/dh0rc6p1c/video/upload/v1745243645/Cardio%20Track/3209241-uhd_3840_2160_25fps_qvto7a.mp4";
 
+export const authVideo =
+	"https://res.cloudinary.com/dh0rc6p1c/video/upload/v1745243645/Cardio%20Track/3209241-uhd_3840_2160_25fps_qvto7a.mp4";
+
 export const links = [
 	{
 		slug: "#",
@@ -177,5 +180,32 @@ export const hows = [
 		description:
 			"Watch your fitness metrics improve over time and celebrate hitting your goals.",
 		number: "03",
+	},
+];
+
+export const newDashboardAnimations = [
+	{
+		name: "Running",
+		animation: require("@/public/assets/animations/running.json"),
+	},
+	{
+		name: "Jumping rope",
+		animation: require("@/public/assets/animations/jumping.json"),
+	},
+	{
+		name: "Cycling",
+		animation: require("@/public/assets/animations/cycling.json"),
+	},
+	{
+		name: "Swimming",
+		animation: require("@/public/assets/animations/cycling.json"),
+	},
+	{
+		name: "Walking",
+		animation: require("@/public/assets/animations/cycling.json"),
+	},
+	{
+		name: "Treadmill",
+		animation: require("@/public/assets/animations/cycling.json"),
 	},
 ];
