@@ -100,7 +100,11 @@
 	}
 	body {
 		@apply bg-background text-foreground;
+		@apply overflow-x-hidden;
 	}
+}
+body {
+	overflow-x: hidden !important;
 }
 
 .cl-internal-b3fm6y {
@@ -121,14 +125,31 @@
 	max-width: 100% !important;
 }
 
+.cl-internal-27qh226 {
+	flex-flow: column !important;
+}
+
 .cl-headerTitle,
 .cl-headerSubtitle {
 	display: none !important;
 }
 
 .cl-socialButtons {
-	grid-template-columns: 1fr !important;
+	grid-template-columns: 3, 1fr !important;
 	/* width: 100% !important; */
+}
+.cl-internal-q966dm {
+	height: 56px !important;
+}
+
+.cl-internal-mdg29y,
+.cl-internal-18ut2g5 {
+	height: 56px !important;
+	background: transparent !important;
+}
+
+.cl-internal-1fsg6zy {
+	height: 56px !important;
 }
 
 .cl-footer {
@@ -141,4 +162,8 @@ body {
 
 .PhoneInput input {
 	outline: none;
+}
+
+header {
+	z-index: 9999;
 }

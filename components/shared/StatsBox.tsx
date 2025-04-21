@@ -1,10 +1,5 @@
 import Image from "next/image";
-import { Inknut_Antiqua } from "next/font/google";
 import { formatWithCommas } from "@/lib/utils";
-const inknut = Inknut_Antiqua({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
 
 const StatsBox = ({
 	icon,
@@ -28,9 +23,7 @@ const StatsBox = ({
 			/>
 			<div className="space-y-1 md:text-center lg:text-left">
 				<h4 className="text-3xl font-medium">
-					<span className={`${inknut.className}`}>
-						{number === "NaN" ? 0 : formatWithCommas(number)}/
-					</span>
+					{number === "NaN" ? 0 : formatWithCommas(number)}/
 					<span className="text-base">{title}</span>
 				</h4>
 				<p className="text-base text-gray-700">{description}</p>

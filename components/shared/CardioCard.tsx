@@ -1,9 +1,4 @@
-import { Inknut_Antiqua } from "next/font/google";
 import Image from "next/image";
-const inknut = Inknut_Antiqua({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
 
 const CardioCard = ({
 	title,
@@ -24,9 +19,7 @@ const CardioCard = ({
 				className="w-20 h-20"
 			/>
 			<div className="space-y-1 md:text-center lg:text-left">
-				<h4 className="text-lg font-medium">
-					<span className={`${inknut.className}`}>{details}</span>
-				</h4>
+				<h4 className="text-lg font-medium">{details}</h4>
 				<p className="text-base text-gray-700">{title}</p>
 			</div>
 		</div>

@@ -1,18 +1,19 @@
-import { Inknut_Antiqua } from "next/font/google";
+import { Heart } from "lucide-react";
 import Link from "next/link";
-const inknut = Inknut_Antiqua({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
-const Logo = () => {
+import { ColourfulText } from "../ui/colourful-text";
+
+const Logo = ({ color = "0,0,0" }: { color?: string }) => {
 	return (
-		<div className="w-full py-4">
-			<h2>
+		<div className="py-4">
+			<h2 data-aos="fade-right">
 				<Link
-					className={`${inknut.className} uppercase text-2xl font-semibold hover:text-primary transition-all`}
+					className={`flex items-center space-x-2 uppercase text-2xl md:text-3xl font-bold hover:text-primary transition-all`}
 					href="/"
 				>
-					Cardio Track
+					<Heart className="text-secondary" size={32} />
+					<span>
+						Cardio <ColourfulText color={color} text={"Track"} />
+					</span>
 				</Link>
 			</h2>
 		</div>

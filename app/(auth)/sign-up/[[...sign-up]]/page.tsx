@@ -2,12 +2,6 @@ import Logo from "@/components/shared/Logo";
 import { SignUp } from "@clerk/nextjs";
 import Image from "next/image";
 
-import { Inknut_Antiqua } from "next/font/google";
-const inknut = Inknut_Antiqua({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
-
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -31,9 +25,9 @@ const page = () => {
 					<Logo />
 					<div className="flex-1 flex flex-col items-start justify-center">
 						<h2
-							className={`${inknut.className} uppercase text-lg font-semibold mb-2 text-primary`}
+							className={`uppercase text-lg font-semibold mb-2 text-primary`}
 						>
-							Join us now
+							Create your account
 						</h2>
 						<p className="text-base">
 							Create an account to easily log your cardio
