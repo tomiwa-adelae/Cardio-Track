@@ -52,8 +52,14 @@ const page = async () => {
 					priority!
 				</p>
 				<div className="flex flex-wrap items-center justify-start gap-4 mt-4">
-					<Button size={"lg"}>Export workout data</Button>
-					<Button variant={"secondary"} size={"lg"}>
+					<Button className="rounded-full" size={"lg"}>
+						Export workout data
+					</Button>
+					<Button
+						className="rounded-full"
+						variant={"secondary"}
+						size={"lg"}
+					>
 						Delete account
 					</Button>
 				</div>
