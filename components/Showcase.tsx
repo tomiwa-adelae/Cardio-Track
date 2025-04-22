@@ -5,8 +5,13 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import Header from "./Header";
 import { ColourfulText } from "./ui/colourful-text";
+import { auth } from "@clerk/nextjs";
+import { getUserInfo } from "@/lib/actions/user.actions";
 
-const Showcase = () => {
+const Showcase = async () => {
+	const { userId } = auth();
+
+	const userDetails = await getUserInfo(userId!);
 	return (
 		<div
 			className={`flex items-center justify-center bg-no-repeat bg-center bg-cover relative text-white`}
@@ -22,7 +27,7 @@ const Showcase = () => {
 			</video>
 			<div className={`container z-50`}>
 				<div className="flex flex-col items-start justify-between h-screen">
-					<Header color={"255,255,255"} />
+					<Header user={userDetails.user} color={"255,255,255"} />
 					<div
 						className="flex-1 w-full py-16 flex flex-col md:items-center justify-center md:text-center"
 						data-aos="fade-up"

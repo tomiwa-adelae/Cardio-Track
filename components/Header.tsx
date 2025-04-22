@@ -8,7 +8,7 @@ import { Button } from "./ui/button";
 import { MobileNavbar } from "./shared/MobileNavbar";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 
-const Header = ({ color }: { color: string }) => {
+const Header = ({ color, user }: { color: string; user: any }) => {
 	const pathname = usePathname();
 
 	return (
@@ -57,7 +57,7 @@ const Header = ({ color }: { color: string }) => {
 							<Link href="/sign-up">Sign up</Link>
 						</Button>
 					</SignedOut>
-					<MobileNavbar />
+					<MobileNavbar user={user} />
 				</div>
 			</div>
 		</header>

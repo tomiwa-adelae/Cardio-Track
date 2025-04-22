@@ -26,6 +26,29 @@ export const navLinks = [
 	},
 ];
 
+export const links = [
+	{
+		slug: "#",
+		label: "Home",
+		icon: "/assets/icons/home.svg",
+	},
+	{
+		slug: "#about",
+		label: "About",
+		icon: "/assets/icons/about.svg",
+	},
+	{
+		slug: "#features",
+		label: "Features",
+		icon: "/assets/icons/features.svg",
+	},
+	{
+		slug: "/sign-up",
+		label: "Sign up",
+		icon: "",
+	},
+];
+
 export const stats = [
 	{
 		icon: "/assets/icons/dumbbell.svg",
@@ -65,8 +88,6 @@ export const workoutIntensities = ["Low", "Moderate", "High"];
 
 export const genders = ["Male", "Female"];
 
-export const CARDIO_LIMIT = 100;
-
 export const showcaseVideo =
 	"https://res.cloudinary.com/dh0rc6p1c/video/upload/v1745236782/Cardio%20Track/3195943-uhd_3840_2160_25fps_ehvly2.mp4";
 
@@ -75,25 +96,6 @@ export const joinVideo =
 
 export const authVideo =
 	"https://res.cloudinary.com/dh0rc6p1c/video/upload/v1745243645/Cardio%20Track/3209241-uhd_3840_2160_25fps_qvto7a.mp4";
-
-export const links = [
-	{
-		slug: "#",
-		label: "Home",
-	},
-	{
-		slug: "#about",
-		label: "About",
-	},
-	{
-		slug: "#features",
-		label: "Features",
-	},
-	{
-		slug: "/sign-up",
-		label: "Sign up",
-	},
-];
 
 export const whys = [
 	{

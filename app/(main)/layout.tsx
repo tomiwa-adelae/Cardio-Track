@@ -23,9 +23,27 @@ export default async function MainLayout({
 		redirect("/sign-in");
 	}
 
-	const user = await getUserInfo(userId!);
+	let user = null;
+	const maxWaitTime = 60 * 1000; // 1 minute
+	const intervalTime = 5000; // 5 seconds
+	let elapsedTime = 0;
 
-	if (user?.status !== 200) redirect("/not-authorized");
+	// Polling function to attempt getting the user info multiple times
+	while (elapsedTime < maxWaitTime) {
+		user = await getUserInfo(userId);
+
+		if (user?.status === 200) {
+			break; // Successfully got user info, exit the loop
+		}
+
+		// Wait for the interval time before trying again
+		await new Promise((resolve) => setTimeout(resolve, intervalTime));
+		elapsedTime += intervalTime;
+	}
+
+	if (!user || user?.status !== 200) {
+		redirect("/not-authorized");
+	}
 
 	return (
 		<SidebarProvider defaultOpen={true}>

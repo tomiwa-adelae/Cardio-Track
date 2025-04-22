@@ -564,7 +564,7 @@ export function WorkoutCharts({ workoutData }: { workoutData: any[] }) {
 		<div>
 			<h3 className="font-medium text-lg mb-4 uppercase">Timeline</h3>
 			<div className="shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] bg-white rounded-lg p-8">
-				<div className="flex items-center justify-between mb-4">
+				<div className="flex flex-wrap items-center justify-between mb-4">
 					<div className="flex items-center">
 						<Button
 							variant="outline"
@@ -696,8 +696,8 @@ export function WorkoutCharts({ workoutData }: { workoutData: any[] }) {
 								<p className="text-sm text-muted-foreground">
 									{metric.name}
 								</p>
-								<div className="flex items-end gap-2 mt-1">
-									<p className="text-2xl font-medium">
+								<div className="flex flex-col md:flex-row  items-start md:items-end gap-2 mt-1">
+									<p className="text-lg lg:text-xl font-medium">
 										{metric.current} {metric.unit}
 									</p>
 									<p

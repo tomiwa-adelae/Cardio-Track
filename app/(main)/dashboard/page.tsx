@@ -4,7 +4,6 @@ import Stats from "@/components/shared/Stats";
 import { WorkoutTable } from "@/components/shared/WorkoutTable";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { CARDIO_LIMIT } from "@/constants";
 import { getCardios } from "@/lib/actions/cardio.actions";
 import { getUserInfo } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
@@ -24,15 +23,9 @@ export const metadata: Metadata = {
 const page = async ({ searchParams }: SearchParamProps) => {
 	const { userId } = auth();
 
-	const page = Number(searchParams?.page) || 1;
-	const query = (searchParams?.query as string) || "";
-
 	const user = await getUserInfo(userId!);
 
 	const cardios = await getCardios({
-		page,
-		query,
-		limit: CARDIO_LIMIT,
 		userId: user?.user?._id,
 	});
 
@@ -55,9 +48,10 @@ const page = async ({ searchParams }: SearchParamProps) => {
 					<WorkoutTable
 						cardios={cardios.data}
 						title="Recent workout table"
-						limit={3}
+						limit={5}
 					/>
-					<Button size={"lg"} className="mt-10" asChild>
+					<Separator className="my-8" />
+					<Button className="rounded-full" size={"lg"} asChild>
 						<Link href="/new-cardio">+ Log new cardio sesion</Link>
 					</Button>
 				</>

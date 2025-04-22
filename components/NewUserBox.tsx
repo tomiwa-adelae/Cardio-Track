@@ -21,13 +21,13 @@ const NewUserBox = () => {
 				direction="right"
 				speed="normal"
 			/>
-			<Button asChild size={"lg"}>
+			<Button className="rounded-full" asChild size={"lg"}>
 				<Link href="/new-cardio">Log first cardio session</Link>
 			</Button>
 
 			<Separator className="my-8" />
 
-			<p className="italic text-base">
+			<p className="italic text-base text-muted-foreground">
 				Every journey starts with a single step. Log your first session
 				and take control of your fitness!
 			</p>

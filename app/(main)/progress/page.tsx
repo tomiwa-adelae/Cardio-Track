@@ -3,7 +3,6 @@ import Stats from "@/components/shared/Stats";
 import { WorkoutTable } from "@/components/shared/WorkoutTable";
 import { Button } from "@/components/ui/button";
 import { WorkoutCharts } from "@/components/WorkoutCharts";
-import { CARDIO_LIMIT } from "@/constants";
 import { getCardios } from "@/lib/actions/cardio.actions";
 import { getUserInfo } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
@@ -11,6 +10,7 @@ import { redirect } from "next/navigation";
 
 import type { Metadata } from "next";
 import PersonalBest from "@/components/PersonalBest";
+import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
 	title: "View Progress – Cardio Track | Visualize Your Fitness Trends",
@@ -23,15 +23,9 @@ export const metadata: Metadata = {
 const page = async ({ searchParams }: SearchParamProps) => {
 	const { userId } = auth();
 
-	const page = Number(searchParams?.page) || 1;
-	const query = (searchParams?.query as string) || "";
-
 	const user = await getUserInfo(userId!);
 
 	const cardios = await getCardios({
-		page,
-		query,
-		limit: CARDIO_LIMIT,
 		userId: user?.user?._id,
 	});
 
@@ -45,12 +39,14 @@ const page = async ({ searchParams }: SearchParamProps) => {
 				}
 			/>
 			<Stats cardios={cardios.data} />
+			<Separator className="my-8" />
 			<WorkoutCharts workoutData={cardios.data} />
-			<div className="my-8">
-				<PersonalBest workoutData={cardios.data} />
-			</div>
+			<Separator className="my-8" />
+			<PersonalBest workoutData={cardios.data} />
+			<Separator className="my-8" />
 			<WorkoutTable cardios={cardios.data} title="Workout history" />
-			<Button size={"lg"} className="mt-10">
+			<Separator className="my-8" />
+			<Button size={"lg"} className="rounded-full">
 				Export reports
 			</Button>
 		</div>

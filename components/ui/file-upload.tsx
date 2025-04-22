@@ -80,10 +80,10 @@ export const FileUpload = ({
 				<div className="flex flex-col items-center justify-center">
 					{showTitle && (
 						<>
-							<p className="relative z-20 font-bold text-neutral-700 dark:text-neutral-300 text-base">
+							<h3 className="font-medium text-lg mb-4 uppercase">
 								{title}
-							</p>
-							<p className="relative z-20 font-normal text-neutral-400 dark:text-neutral-400 text-base mt-2 text-center">
+							</h3>
+							<p className="relative z-20 font-normal text-muted-foreground text-base mt-2 text-center">
 								Drag or drop your picture here or click to
 								upload
 							</p>

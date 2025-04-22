@@ -5,7 +5,6 @@ import { connectToDatabase } from "../database";
 import Cardio from "../database/models/cardio.model";
 import User from "../database/models/user.model";
 import { handleError } from "../utils";
-import { CARDIO_LIMIT } from "@/constants";
 
 // Create new cardio session
 export const createCardioSession = async ({
@@ -158,12 +157,7 @@ export const deleteCardio = async ({
 };
 
 // Get all the cardio sessions for a user
-export const getCardios = async ({
-	query,
-	limit = CARDIO_LIMIT,
-	page,
-	userId,
-}: GetCardios) => {
+export const getCardios = async ({ userId }: GetCardios) => {
 	try {
 		await connectToDatabase();
 
@@ -181,70 +175,12 @@ export const getCardios = async ({
 				message: "Oops! User not found.",
 			};
 
-		const keyword = query
-			? {
-					$or: [
-						{
-							type: {
-								$regex: query,
-								$options: "i",
-							},
-						},
-						{
-							duration: {
-								$regex: query,
-								$options: "i",
-							},
-						},
-						{
-							caloriesBurned: {
-								$regex: query,
-								$options: "i",
-							},
-						},
-						{
-							intensity: {
-								$regex: query,
-								$options: "i",
-							},
-						},
-						{
-							distance: {
-								$regex: query,
-								$options: "i",
-							},
-						},
-						{
-							additionalNotes: {
-								$regex: query,
-								$options: "i",
-							},
-						},
-						{
-							heartRate: {
-								$regex: query,
-								$options: "i",
-							},
-						},
-					],
-			  }
-			: {};
-		const skipAmount = (Number(page) - 1) * limit;
-
-		const lists = await Cardio.find({ ...keyword, user: userId })
+		const lists = await Cardio.find({ user: userId })
 			.populate("user")
-			.sort({ createdAt: -1 })
-			.skip(skipAmount)
-			.limit(limit);
-
-		const cardioCount = await Cardio.countDocuments({
-			...keyword,
-			user: userId,
-		});
+			.sort({ createdAt: -1 });
 
 		return {
 			data: JSON.parse(JSON.stringify(lists)),
-			totalPages: Math.ceil(cardioCount / limit),
 			status: 200,
 		};
 	} catch (error: any) {

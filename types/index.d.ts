@@ -7,9 +7,6 @@ declare interface CreateUserParams {
 }
 
 declare interface GetCardios {
-	query: string;
-	limit: number;
-	page: number;
 	userId: string;
 }
 
@@ -31,4 +28,15 @@ declare interface CreateCardioSessionParams {
 declare interface SearchParamProps {
 	params: { [key: string]: string };
 	searchParams: { [key: string]: string | string[] | undefined };
+}
+
+declare interface UrlQueryParams {
+	params: string;
+	key: string;
+	value: string | null;
+}
+
+declare interface RemoveUrlQueryParams {
+	params: string;
+	keysToRemove: string[];
 }

@@ -23,6 +23,7 @@ const PersonalBestBox = ({
 	date,
 	icon: Icon,
 	color,
+	bgColor,
 }: {
 	title: string;
 	value: string;
@@ -30,9 +31,10 @@ const PersonalBestBox = ({
 	date: Date | null;
 	icon: React.ElementType;
 	color: string;
+	bgColor: string;
 }) => (
 	<div
-		className={`flex justify-between items-center bg-${color}-50 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-lg p-8`}
+		className={`flex justify-between items-center ${bgColor} shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-lg p-8`}
 	>
 		<div>
 			<p className="text-sm text-muted-foreground">{title}</p>
@@ -42,7 +44,7 @@ const PersonalBestBox = ({
 			<p className="text-sm text-muted-foreground">{formatDate(date)}</p>
 		</div>
 		<Icon
-			className={`h-10 w-10 md:h-12 md:w-12 lg:h-16 lg:w-16 text-${color}-500`}
+			className={`h-10 w-10 md:h-12 md:w-12 lg:h-16 lg:w-16 ${color}`}
 		/>
 	</div>
 );
@@ -136,7 +138,8 @@ const PersonalBest = ({ workoutData }: { workoutData: Workout[] }) => {
 					value={formatPace(fastestPace.value)}
 					date={fastestPace.date}
 					icon={Clock}
-					color="blue"
+					bgColor="bg-blue-50"
+					color="text-blue-400"
 				/>
 				<PersonalBestBox
 					title="Longest Distance"
@@ -144,7 +147,8 @@ const PersonalBest = ({ workoutData }: { workoutData: Workout[] }) => {
 					unit="km"
 					date={longestDistance.date}
 					icon={Route}
-					color="green"
+					bgColor="bg-green-50"
+					color="text-green-400"
 				/>
 
 				<PersonalBestBox
@@ -153,14 +157,16 @@ const PersonalBest = ({ workoutData }: { workoutData: Workout[] }) => {
 					unit="cal"
 					date={mostCalories.date}
 					icon={Flame}
-					color="orange"
+					bgColor="bg-orange-50"
+					color="text-orange-400"
 				/>
 				<PersonalBestBox
 					title="Longest Workout"
 					value={formatDuration(longestWorkout.value)}
 					date={longestWorkout.date}
 					icon={Trophy}
-					color={"purple"}
+					bgColor="bg-purple-50"
+					color="text-purple-400"
 				/>
 			</div>
 		</div>

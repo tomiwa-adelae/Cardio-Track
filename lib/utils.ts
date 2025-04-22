@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import qs from "query-string";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -100,23 +101,6 @@ export function getAverageHeartRate(data: any) {
 }
 
 export function formatDuration(totalMinutes: any) {
-	// const minutes = Math.floor(totalSeconds / 60);
-	// const seconds = totalSeconds % 60;
-
-	// if (minutes >= 60) {
-	// 	const hours = Math.floor(minutes / 60);
-	// 	const remainingMinutes = minutes % 60;
-
-	// 	const hourLabel = hours === 1 ? "hour" : "hours";
-	// 	const minuteLabel = remainingMinutes === 1 ? "minute" : "minutes";
-
-	// 	return `${hours} ${hourLabel}, ${remainingMinutes} ${minuteLabel}`;
-	// } else {
-	// 	const minuteLabel = minutes === 1 ? "minute" : "minutes";
-
-	// 	return `${minutes} ${minuteLabel}`;
-	// }
-
 	if (totalMinutes >= 60) {
 		const hours = Math.floor(totalMinutes / 60);
 		const minutes = totalMinutes % 60;
@@ -133,4 +117,39 @@ export function formatDuration(totalMinutes: any) {
 		const minuteLabel = totalMinutes === 1 ? "minute" : "minutes";
 		return `${totalMinutes} ${minuteLabel}`;
 	}
+}
+
+export function formUrlQuery({ params, key, value }: UrlQueryParams) {
+	const currentUrl = qs.parse(params);
+
+	currentUrl[key] = value;
+
+	return qs.stringifyUrl(
+		{
+			url: window.location.pathname,
+			query: currentUrl,
+		},
+		{ skipNull: true }
+	);
+}
+
+export function removeKeysFromQuery({
+	params,
+	keysToRemove,
+}: RemoveUrlQueryParams) {
+	const currentUrl = qs.parse(params);
+
+	keysToRemove.forEach((key: any) => {
+		delete currentUrl[key];
+	});
+
+	return qs.stringifyUrl(
+		{
+			url: window.location.pathname,
+			query: currentUrl,
+		},
+		{
+			skipNull: true,
+		}
+	);
 }

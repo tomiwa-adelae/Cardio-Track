@@ -6,7 +6,6 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { PaginationSection } from "../Pagination";
 import { formatDate, formatDuration } from "@/lib/utils";
 import Link from "next/link";
 
@@ -60,12 +59,12 @@ export function WorkoutTable({
 						</TableRow>
 					))}
 				</TableBody>
+				{displayedWorkouts.length === 0 && (
+					<p className="italic text-base text-muted-foreground">
+						No workout data
+					</p>
+				)}
 			</Table>
-			{limit !== 0 && cardios.length >= 10 && (
-				<div className="my-8">
-					<PaginationSection />
-				</div>
-			)}
 		</div>
 	);
 }
