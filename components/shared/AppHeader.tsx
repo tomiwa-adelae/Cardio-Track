@@ -18,7 +18,7 @@ const AppHeader = ({ user }: any) => {
 	return (
 		<div className="container">
 			<div className="flex flex-1 flex-col overflow-x-hidden">
-				<Logo />
+				<Logo size={"text-xl"} />
 				<div className="mt-8 flex flex-col gap-4">
 					{navLinks.map((link, idx) => {
 						const isActive =

@@ -72,6 +72,11 @@ export const updateUser = async ({
 		user.lastName = details.lastName || user.lastName;
 		user.phoneNumber = details.phoneNumber || user.phoneNumber;
 		user.gender = details.gender || user.gender;
+		user.picture = details.picture || user.picture;
+		user.dob = details.dob || user.dob;
+		user.weight = details.weight || user.weight;
+		user.height = details.height || user.height;
+		user.bio = details.bio || user.bio;
 
 		await user.save();
 

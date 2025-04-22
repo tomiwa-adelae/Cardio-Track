@@ -9,8 +9,10 @@ const SectionHeader = ({
 }) => {
 	return (
 		<div className="space-y-1">
-			<h1 className="font-semibold text-xl lg:text-2xl">{title}</h1>
-			<p className="text-base text-gray-700">{description}</p>
+			<h1 className="font-semibold uppercase text-xl lg:text-2xl">
+				{title}
+			</h1>
+			<p className="text-base text-muted-foreground">{description}</p>
 		</div>
 	);
 };

@@ -33,6 +33,10 @@ const page = async () => {
 				email={user?.user?.email}
 				phoneNumber={user?.user?.phoneNumber}
 				gender={user?.user?.gender}
+				weight={user?.user?.weight}
+				height={user?.user?.height}
+				bio={user?.user?.bio}
+				dob={user?.user?.dob}
 				userId={user?.user?._id}
 			/>
 			<Separator className="my-8" />

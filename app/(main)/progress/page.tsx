@@ -10,6 +10,7 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import type { Metadata } from "next";
+import PersonalBest from "@/components/PersonalBest";
 
 export const metadata: Metadata = {
 	title: "View Progress – Cardio Track | Visualize Your Fitness Trends",
@@ -44,7 +45,10 @@ const page = async ({ searchParams }: SearchParamProps) => {
 				}
 			/>
 			<Stats cardios={cardios.data} />
-			<WorkoutCharts cardios={cardios.data} />
+			<WorkoutCharts workoutData={cardios.data} />
+			<div className="my-8">
+				<PersonalBest workoutData={cardios.data} />
+			</div>
 			<WorkoutTable cardios={cardios.data} title="Workout history" />
 			<Button size={"lg"} className="mt-10">
 				Export reports

@@ -65,7 +65,7 @@ export const workoutIntensities = ["Low", "Moderate", "High"];
 
 export const genders = ["Male", "Female"];
 
-export const CARDIO_LIMIT = 10;
+export const CARDIO_LIMIT = 100;
 
 export const showcaseVideo =
 	"https://res.cloudinary.com/dh0rc6p1c/video/upload/v1745236782/Cardio%20Track/3195943-uhd_3840_2160_25fps_ehvly2.mp4";
@@ -197,15 +197,11 @@ export const newDashboardAnimations = [
 		animation: require("@/public/assets/animations/cycling.json"),
 	},
 	{
-		name: "Swimming",
-		animation: require("@/public/assets/animations/cycling.json"),
-	},
-	{
 		name: "Walking",
-		animation: require("@/public/assets/animations/cycling.json"),
+		animation: require("@/public/assets/animations/walking.json"),
 	},
 	{
 		name: "Treadmill",
-		animation: require("@/public/assets/animations/cycling.json"),
+		animation: require("@/public/assets/animations/treadmill.json"),
 	},
 ];

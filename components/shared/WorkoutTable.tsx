@@ -1,15 +1,13 @@
 import {
 	Table,
 	TableBody,
-	TableCaption,
 	TableCell,
-	TableFooter,
 	TableHead,
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
 import { PaginationSection } from "../Pagination";
-import { formatDate } from "@/lib/utils";
+import { formatDate, formatDuration } from "@/lib/utils";
 import Link from "next/link";
 
 export function WorkoutTable({
@@ -49,7 +47,9 @@ export function WorkoutTable({
 								</Link>
 							</TableCell>
 							<TableCell>{cardio.type}</TableCell>
-							<TableCell>{cardio.duration} minutes</TableCell>
+							<TableCell>
+								{formatDuration(cardio.duration)}
+							</TableCell>
 							<TableCell>
 								{!cardio.distance ? 0 : cardio.distance} km
 							</TableCell>

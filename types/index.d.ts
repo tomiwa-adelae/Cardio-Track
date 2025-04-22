@@ -23,6 +23,8 @@ declare interface CreateCardioSessionParams {
 		heartRate: string;
 		intensity: string;
 		additionalNotes?: string;
+		unit?: string;
+		jumpingCount?: string;
 	};
 }
 

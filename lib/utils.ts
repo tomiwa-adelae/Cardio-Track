@@ -9,7 +9,7 @@ export const handleError = (error: unknown) => {
 	console.log(error);
 };
 
-export function formatDate(dateString: string): string {
+export function formatDate(dateString: string | any): string {
 	const date = new Date(dateString);
 
 	// Get the day, month and year
@@ -56,27 +56,37 @@ export function getTotalCaloriesBurned(data: any) {
 	return total.toFixed(2); // Ensure two decimal places
 }
 
-// Utility function to format numbers with commas
 export const formatWithCommas = (amount: number | string) => {
 	const num =
 		typeof amount === "string"
 			? parseFloat(amount.replace(/,/g, ""))
 			: amount;
 
-	if (isNaN(num)) return "0.00";
+	if (isNaN(num)) return "0";
+
+	// Check if the number has a decimal part
+	const hasDecimal = String(num).includes(".") && num % 1 !== 0;
 
 	return num.toLocaleString(undefined, {
-		minimumFractionDigits: 2,
-		maximumFractionDigits: 2,
+		minimumFractionDigits: hasDecimal ? 2 : 0,
+		maximumFractionDigits: hasDecimal ? 2 : 0,
 	});
 };
 
 export function getTotalDistanceCovered(data: any) {
-	const total = data.reduce(
-		(total: number, session: any) => total + Number(session.distance),
-		0
-	);
-	return total.toFixed(2); // Ensure two decimal places
+	const total = data.reduce((sum: number, session: any) => {
+		const count = Number(session.distance);
+		return sum + (isNaN(count) ? 0 : count);
+	}, 0);
+	return total.toFixed(2); // Always return two decimal places
+}
+
+export function getTotalJumpingCount(data: any) {
+	const total = data.reduce((sum: number, session: any) => {
+		const count = Number(session.jumpingCount);
+		return sum + (isNaN(count) ? 0 : count);
+	}, 0);
+	return total.toFixed(2); // Always return two decimal places
 }
 
 export function getAverageHeartRate(data: any) {
@@ -87,4 +97,40 @@ export function getAverageHeartRate(data: any) {
 		0
 	);
 	return (totalHeartRate / data.length).toFixed(2); // Ensure two decimal places
+}
+
+export function formatDuration(totalMinutes: any) {
+	// const minutes = Math.floor(totalSeconds / 60);
+	// const seconds = totalSeconds % 60;
+
+	// if (minutes >= 60) {
+	// 	const hours = Math.floor(minutes / 60);
+	// 	const remainingMinutes = minutes % 60;
+
+	// 	const hourLabel = hours === 1 ? "hour" : "hours";
+	// 	const minuteLabel = remainingMinutes === 1 ? "minute" : "minutes";
+
+	// 	return `${hours} ${hourLabel}, ${remainingMinutes} ${minuteLabel}`;
+	// } else {
+	// 	const minuteLabel = minutes === 1 ? "minute" : "minutes";
+
+	// 	return `${minutes} ${minuteLabel}`;
+	// }
+
+	if (totalMinutes >= 60) {
+		const hours = Math.floor(totalMinutes / 60);
+		const minutes = totalMinutes % 60;
+
+		const hourLabel = hours === 1 ? "hour" : "hours";
+		const minuteLabel = minutes === 1 ? "minute" : "minutes";
+
+		if (minutes > 0) {
+			return `${hours} ${hourLabel}, ${minutes} ${minuteLabel}`;
+		} else {
+			return `${hours} ${hourLabel}`;
+		}
+	} else {
+		const minuteLabel = totalMinutes === 1 ? "minute" : "minutes";
+		return `${totalMinutes} ${minuteLabel}`;
+	}
 }

@@ -5,47 +5,55 @@ const SummaryCardio = ({ cardio }: { cardio: any }) => {
 	return (
 		<div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-4">
 			<CardioCard
-				icon={"/assets/icons/calendar.svg"}
+				animation={require("@/public/assets/animations/calendar.json")}
 				title={"Date & Time"}
 				details={`${formatTimestamp(cardio?.createdAt)}`}
 			/>
 			<CardioCard
-				icon={
+				animation={
 					cardio.type === "Running"
-						? "/assets/icons/running.svg"
+						? require("@/public/assets/animations/running.json")
 						: cardio.type === "Walking"
-						? "/assets/icons/walking.svg"
+						? require("@/public/assets/animations/walking.json")
 						: cardio.type === "Cycling"
-						? "/assets/icons/cycling.svg"
-						: cardio.type === "Jump Rope"
-						? "/assets/icons/jumping.svg"
+						? require("@/public/assets/animations/cycling.json")
+						: cardio.type === "Jumping rope"
+						? require("@/public/assets/animations/jumping.json")
 						: cardio.type === "Treadmill"
-						? "/assets/icons/treadmill.svg"
-						: ""
+						? require("@/public/assets/animations/treadmill.json")
+						: require("@/public/assets/animations/workout.json")
 				}
 				title={"Workout type"}
-				details={`${cardio.type}`}
+				details={`${cardio.type} ${
+					cardio.type === "Jumping rope"
+						? `(${formatWithCommas(cardio.jumpingCount)})`
+						: ""
+				}`}
 			/>
 			<CardioCard
-				icon={"/assets/icons/hour-glass.svg"}
+				animation={require("@/public/assets/animations/duration.json")}
 				title={"Duration"}
 				details={`${cardio.duration} minutes`}
 			/>
 			<CardioCard
-				icon={"/assets/icons/heart.svg"}
+				animation={require("@/public/assets/animations/heartrate.json")}
 				title={"Average Heart Rate"}
 				details={`${formatWithCommas(cardio.heartRate)} BPM`}
 			/>
 			<CardioCard
-				icon={"/assets/icons/fire.svg"}
+				animation={require("@/public/assets/animations/fire.json")}
 				title={"Calories Burned"}
 				details={`${formatWithCommas(cardio.caloriesBurned)} kcal`}
 			/>
-			{cardio.additionalNotes.length !== 0 && (
+			{cardio?.additionalNotes?.length !== 0 && (
 				<CardioCard
-					icon={"/assets/icons/reports.svg"}
+					animation={require("@/public/assets/animations/note.json")}
 					title={"Notes"}
-					details={`${cardio.additionalNotes}`}
+					details={`${
+						cardio?.additionalNotes === undefined
+							? "No notes"
+							: cardio?.additionalNotes
+					}`}
 				/>
 			)}
 		</div>

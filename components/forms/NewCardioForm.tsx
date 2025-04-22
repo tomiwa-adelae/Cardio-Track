@@ -40,7 +40,7 @@ import { createCardioSession } from "@/lib/actions/cardio.actions";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Clock, Flame, Heart, MapPin } from "lucide-react";
+import { Clock, Flame, Heart, MapPin, Tally5 } from "lucide-react";
 
 export function NewCardioForm({ userId }: { userId: string }) {
 	const animationRef = useRef<LottieRefCurrentProps>(null);
@@ -50,12 +50,14 @@ export function NewCardioForm({ userId }: { userId: string }) {
 
 	const form = useForm<z.infer<typeof NewCardioFormSchema>>({
 		resolver: zodResolver(NewCardioFormSchema),
-		defaultValues: {},
+		defaultValues: {
+			unit: "km",
+		},
 	});
 
 	async function onSubmit(data: z.infer<typeof NewCardioFormSchema>) {
 		try {
-			const details = { ...data };
+			const details = { ...data, type: workoutType };
 
 			const res = await createCardioSession({ details, userId });
 
@@ -81,8 +83,6 @@ export function NewCardioForm({ userId }: { userId: string }) {
 		}
 	}
 
-	const type = form.watch("type");
-
 	return (
 		<div className="mt-8">
 			<Form {...form}>
@@ -102,7 +102,7 @@ export function NewCardioForm({ userId }: { userId: string }) {
 										className={cn(
 											"shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-lg p-8 mt-2 bg-white cursor-pointer",
 											animation.name === workoutType &&
-												"bg-primary text-white"
+												"border-primary border text-primary"
 										)}
 										onClick={() =>
 											setWorkoutType(animation.name)
@@ -111,7 +111,7 @@ export function NewCardioForm({ userId }: { userId: string }) {
 										<Lottie
 											lottieRef={animationRef}
 											animationData={animationData}
-											className="h-16"
+											className="h-20"
 										/>
 										<h4 className="text-base font-medium uppercase text-center mx-auto mt-4">
 											{animation.name}
@@ -121,36 +121,6 @@ export function NewCardioForm({ userId }: { userId: string }) {
 							})}
 						</div>
 					</div>
-					{/* <FormField
-						control={form.control}
-						name="type"
-						render={({ field }) => (
-							<FormItem>
-							<FormLabel>Workout type</FormLabel>
-								<Select
-									onValueChange={field.onChange}
-									defaultValue={field.value}
-								>
-									<FormControl>
-										<SelectTrigger>
-											<SelectValue placeholder="Select a workout type" />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent>
-										{workoutType.map((type, index) => (
-											<SelectItem
-												value={type}
-												key={index}
-											>
-												{type}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-								<FormMessage />
-							</FormItem>
-						)}
-					/> */}
 					<FormField
 						control={form.control}
 						name="duration"
@@ -164,7 +134,7 @@ export function NewCardioForm({ userId }: { userId: string }) {
 										<Input
 											type="number"
 											placeholder="15"
-											max={60}
+											max={2000}
 											min={1}
 											className="pl-10"
 											{...field}
@@ -176,69 +146,100 @@ export function NewCardioForm({ userId }: { userId: string }) {
 							</FormItem>
 						)}
 					/>
-
-					<FormField
-						control={form.control}
-						name="distance"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Distance covered (km)</FormLabel>
-								<FormControl>
-									<div className="relative flex items-center justify-center">
-										<Input
-											type="number"
-											placeholder="5"
-											max={1000}
-											min={1}
-											className="flex-1 pl-10"
-											{...field}
-										/>
-										<MapPin className="text-muted-foreground absolute top-[50%] left-[1%] translate-x-[-1%] translate-y-[-50%] " />
-										<Select>
-											<SelectTrigger className="w-[100px]">
-												<SelectValue placeholder="unit" />
-											</SelectTrigger>
+					{["Running", "Walking", "Cycling"].includes(
+						workoutType
+					) && (
+						<div className="w-full flex items-center justify-center">
+							<FormField
+								control={form.control}
+								name="distance"
+								render={({ field }) => (
+									<FormItem className="flex-1">
+										<FormLabel>
+											Distance covered (km)
+										</FormLabel>
+										<FormControl>
+											<div className="relative">
+												<Input
+													type="number"
+													placeholder="5"
+													max={1000}
+													min={1}
+													className="flex-1 pl-10"
+													{...field}
+												/>
+												<MapPin className="text-muted-foreground absolute top-[50%] left-[1%] translate-x-[-1%] translate-y-[-50%] " />
+											</div>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="unit"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="opacity-0">
+											Unit
+										</FormLabel>
+										<Select
+											onValueChange={field.onChange}
+											defaultValue={field.value}
+										>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder="Select a unit" />
+												</SelectTrigger>
+											</FormControl>
 											<SelectContent>
 												<SelectGroup>
 													<SelectLabel>
 														Unit
 													</SelectLabel>
 													<SelectItem value="km">
-														kilometers
+														km
 													</SelectItem>
 													<SelectItem value="m">
-														meters
+														m
 													</SelectItem>
 													<SelectItem value="mil">
-														miles
+														mi
 													</SelectItem>
 												</SelectGroup>
 											</SelectContent>
 										</Select>
-									</div>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					{/* {["Running", "Walking", "Cycling"].includes(type) && (
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</div>
+					)}
+					{["Jumping rope"].includes(workoutType) && (
 						<FormField
 							control={form.control}
-							name="distance"
+							name="jumpingCount"
 							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Distance covered (km)</FormLabel>
+								<FormItem className="flex-1">
+									<FormLabel>Jumping count</FormLabel>
 									<FormControl>
-										<Input
-											placeholder="Example: 5.2"
-											{...field}
-										/>
+										<div className="relative">
+											<Input
+												type="number"
+												placeholder="5"
+												max={10000}
+												min={1}
+												className="flex-1 pl-10"
+												{...field}
+											/>
+											<Tally5 className="text-muted-foreground absolute top-[50%] left-[1%] translate-x-[-1%] translate-y-[-50%] " />
+										</div>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
 							)}
 						/>
-					)} */}
+					)}
 					<FormField
 						control={form.control}
 						name="caloriesBurned"

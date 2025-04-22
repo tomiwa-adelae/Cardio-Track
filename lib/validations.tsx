@@ -2,13 +2,12 @@ import { z } from "zod";
 import { isValidPhoneNumber } from "react-phone-number-input";
 
 export const NewCardioFormSchema = z.object({
-	type: z.string().min(2, {
-		message: "Workout type is required.",
-	}),
+	unit: z.string().optional(),
 	duration: z.string().min(2, {
 		message: "Workout duration is required.",
 	}),
 	distance: z.string().optional(),
+	jumpingCount: z.string().optional(),
 	caloriesBurned: z.string().min(2, {
 		message: "Calories burned is required.",
 	}),
@@ -44,4 +43,8 @@ export const ProfileSettingsFormSchema = z.object({
 			message: "Gender must be either Male or Female.",
 		})
 		.optional(),
+	weight: z.string().optional(),
+	height: z.string().optional(),
+	bio: z.string().optional(),
+	dob: z.string().optional(),
 });

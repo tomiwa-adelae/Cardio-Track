@@ -10,6 +10,8 @@ interface ICardio extends Document {
 	heartRate?: string;
 	intensity: string;
 	additionalNotes?: string;
+	jumpingCount?: string;
+	unit?: string;
 	createdAt?: Date;
 	updatedAt?: Date;
 }
@@ -36,7 +38,13 @@ const CardioSchema = new Schema<ICardio>(
 		caloriesBurned: {
 			type: String,
 		},
+		unit: {
+			type: String,
+		},
 		heartRate: {
+			type: String,
+		},
+		jumpingCount: {
 			type: String,
 		},
 		intensity: {

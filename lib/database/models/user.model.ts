@@ -8,6 +8,11 @@ interface IUser extends Document {
 	lastName: string;
 	phoneNumber?: string;
 	picture?: string;
+	pictureId?: string;
+	bio?: string;
+	weight?: string;
+	height?: string;
+	dob?: string;
 	createdAt?: Date;
 	updatedAt?: Date;
 }
@@ -37,6 +42,21 @@ const UserSchema = new Schema<IUser>(
 			type: String,
 		},
 		picture: {
+			type: String,
+		},
+		pictureId: {
+			type: String,
+		},
+		bio: {
+			type: String,
+		},
+		dob: {
+			type: String,
+		},
+		weight: {
+			type: String,
+		},
+		height: {
 			type: String,
 		},
 	},
