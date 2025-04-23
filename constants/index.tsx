@@ -133,31 +133,31 @@ export const testimonials = [
 		quote: "Cardio Track has transformed how I prepare for races. The detailed analytics helped me improve my pace by 15% in just three months.",
 		name: "Sarah J.",
 		designation: "Marathon Runner",
-		src: "https://res.cloudinary.com/dh0rc6p1c/image/upload/v1744804414/innovation/organizer/WhatsApp_Image_2025-04-15_at_9.41.52_PM_rdlp4j.jpg",
+		src: "https://res.cloudinary.com/dh0rc6p1c/image/upload/v1745429883/cardiotrack/pexels-olly-3768913_gys5mr.jpg",
 	},
 	{
 		quote: "I love how easy it is to see my progress over time. The heart rate zone training has been a game-changer for my cardio fitness.",
 		name: "Michael T.",
 		designation: "Fitness Enthusiast",
-		src: "https://res.cloudinary.com/dh0rc6p1c/image/upload/v1744310256/innovation/organizer/WhatsApp_Image_2025-04-09_at_11.44.26_bf546150_qkptqm.jpg",
+		src: "https://res.cloudinary.com/dh0rc6p1c/image/upload/v1745430002/cardiotrack/pexels-panther-1547248_pips6d.jpg",
 	},
 	{
 		quote: "The ability to track different cardio workouts in one place is exactly what I needed. Now I can see how my cycling and swimming complement each other.",
 		name: "Emma R.",
 		designation: "Cyclist",
-		src: "https://res.cloudinary.com/dh0rc6p1c/image/upload/v1744310257/innovation/organizer/surprise_3_yjpcn5.jpg",
+		src: "https://res.cloudinary.com/dh0rc6p1c/image/upload/v1745429897/cardiotrack/pexels-olly-3768916_gqiwey.jpg",
 	},
 	{
 		quote: "Cardio Track helped me stay consistent with my workouts, especially during my final year project. I love how easy it is to log my sessions and actually see my progress in charts.",
-		name: "Samuel O.",
+		name: "Sandra O.",
 		designation: "Computer Science Student",
-		src: "https://res.cloudinary.com/dh0rc6p1c/image/upload/v1744311935/innovation/organizer/WhatsApp_Image_2025-04-10_at_20.04.42_2d7d0f47_fig9tg.jpg",
+		src: "https://res.cloudinary.com/dh0rc6p1c/image/upload/v1745430028/cardiotrack/pexels-mastercowley-1089164_g9sfh3.jpg",
 	},
 	{
 		quote: "I’ve tried a few fitness apps, but most are overwhelming. This one keeps it simple, clean, and super focused on cardio. It’s perfect for people who just want to track and grow without distractions.",
 		name: "Nora A.",
 		designation: "Weekend Runner",
-		src: "https://res.cloudinary.com/dh0rc6p1c/image/upload/v1744312373/innovation/organizer/koko_llklvf.jpg",
+		src: "https://res.cloudinary.com/dh0rc6p1c/image/upload/v1745429910/cardiotrack/pexels-pixabay-414029_d8ihsr.jpg",
 	},
 ];
 
