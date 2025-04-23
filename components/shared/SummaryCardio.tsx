@@ -1,4 +1,4 @@
-import { formatTimestamp, formatWithCommas } from "@/lib/utils";
+import { formatDuration, formatTimestamp, formatWithCommas } from "@/lib/utils";
 import CardioCard from "./CardioCard";
 
 const SummaryCardio = ({ cardio }: { cardio: any }) => {
@@ -33,7 +33,7 @@ const SummaryCardio = ({ cardio }: { cardio: any }) => {
 			<CardioCard
 				animation={require("@/public/assets/animations/duration.json")}
 				title={"Duration"}
-				details={`${cardio.duration} minutes`}
+				details={`${formatDuration(cardio.duration)} minutes`}
 			/>
 			<CardioCard
 				animation={require("@/public/assets/animations/heartrate.json")}

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 import { ClerkProvider } from "@clerk/nextjs";
+
+import "./globals.css";
+
+import { Toaster } from "@/components/ui/toaster";
 import { AOSProvider } from "@/components/shared/AOSProvider";
 
 const montserrat = Montserrat({
@@ -27,7 +29,7 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="en">
 				<body className={montserrat.className}>
-				<AOSProvider />
+					<AOSProvider />
 					{children}
 					<Toaster />
 				</body>

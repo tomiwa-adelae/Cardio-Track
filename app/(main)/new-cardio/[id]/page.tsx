@@ -1,15 +1,15 @@
-import CardioActions from "@/components/CardioActions";
-import SectionHeader from "@/components/shared/SectionHeader";
-import SummaryCardio from "@/components/shared/SummaryCardio";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { getCardioDetails } from "@/lib/actions/cardio.actions";
-import { getUserInfo } from "@/lib/actions/user.actions";
-import { formatTimestamp } from "@/lib/utils";
+import type { Metadata } from "next";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-import type { Metadata } from "next";
+import CardioActions from "@/components/CardioActions";
+import SectionHeader from "@/components/shared/SectionHeader";
+import SummaryCardio from "@/components/shared/SummaryCardio";
+import { Separator } from "@/components/ui/separator";
+
+import { getCardioDetails } from "@/lib/actions/cardio.actions";
+import { getUserInfo } from "@/lib/actions/user.actions";
+import { formatTimestamp } from "@/lib/utils";
 
 export const metadata: Metadata = {
 	title: "Cardio Session | Cardio Track",

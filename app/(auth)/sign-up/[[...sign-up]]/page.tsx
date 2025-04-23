@@ -1,8 +1,7 @@
-import Logo from "@/components/shared/Logo";
-import { authVideo } from "@/constants";
+import type { Metadata } from "next";
 import { SignUp } from "@clerk/nextjs";
 
-import type { Metadata } from "next";
+import Logo from "@/components/shared/Logo";
 
 export const metadata: Metadata = {
 	title: "Sign Up – Cardio Track | Create Your Free Fitness Account",

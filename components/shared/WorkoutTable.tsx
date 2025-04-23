@@ -60,7 +60,7 @@ export function WorkoutTable({
 					))}
 				</TableBody>
 				{displayedWorkouts.length === 0 && (
-					<p className="italic text-base text-muted-foreground">
+					<p className="italic text-base text-center py-6 text-muted-foreground">
 						No workout data
 					</p>
 				)}

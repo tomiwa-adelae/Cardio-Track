@@ -1,11 +1,12 @@
+import type { Metadata } from "next";
+import { auth } from "@clerk/nextjs";
+
 import { ProfileSettingsForm } from "@/components/forms/ProfileSettingsForm";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getUserInfo } from "@/lib/actions/user.actions";
-import { auth } from "@clerk/nextjs";
 
-import type { Metadata } from "next";
+import { getUserInfo } from "@/lib/actions/user.actions";
 
 export const metadata: Metadata = {
 	title: "Profile Settings – Cardio Track | Manage Your Fitness Preferences",

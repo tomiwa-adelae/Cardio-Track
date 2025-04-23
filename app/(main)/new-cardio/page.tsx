@@ -1,9 +1,10 @@
-import { NewCardioForm } from "@/components/forms/NewCardioForm";
-import SectionHeader from "@/components/shared/SectionHeader";
-import { getUserInfo } from "@/lib/actions/user.actions";
+import type { Metadata } from "next";
 import { auth } from "@clerk/nextjs";
 
-import type { Metadata } from "next";
+import { NewCardioForm } from "@/components/forms/NewCardioForm";
+import SectionHeader from "@/components/shared/SectionHeader";
+
+import { getUserInfo } from "@/lib/actions/user.actions";
 
 export const metadata: Metadata = {
 	title: "New Cardio Session – Log Your Workout | Cardio Track",

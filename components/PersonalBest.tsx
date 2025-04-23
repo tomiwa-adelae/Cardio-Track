@@ -1,8 +1,8 @@
 "use client";
+import React, { useState, useEffect } from "react";
+import { Clock, Flame, Route, Trophy } from "lucide-react";
 
 import { formatDate, formatDuration } from "@/lib/utils";
-import { Clock, Flame, Route, Trophy } from "lucide-react";
-import React, { useState, useEffect } from "react";
 
 type Workout = {
 	distance?: string;
@@ -66,7 +66,6 @@ const PersonalBest = ({ workoutData }: { workoutData: Workout[] }) => {
 		value: 0,
 		date: null,
 	});
-
 	useEffect(() => {
 		if (!workoutData?.length) return;
 
@@ -74,33 +73,41 @@ const PersonalBest = ({ workoutData }: { workoutData: Workout[] }) => {
 
 		const getMax = (key: keyof Workout) => {
 			const valid = workoutData.filter((w) => w[key]);
-			return valid.reduce((max, curr) =>
-				parse(curr[key]) > parse(max[key]) ? curr : max
-			);
+			return valid.length > 0
+				? valid.reduce((max, curr) =>
+						parse(curr[key]) > parse(max[key]) ? curr : max
+				  )
+				: null;
 		};
 
 		// Longest Distance
 		const maxDistance = getMax("distance");
-		setLongestDistance({
-			value: parse(maxDistance.distance),
-			date: new Date(maxDistance.createdAt),
-		});
+		if (maxDistance) {
+			setLongestDistance({
+				value: parse(maxDistance.distance),
+				date: new Date(maxDistance.createdAt),
+			});
+		}
 
 		// Most Calories Burned
 		const maxCalories = getMax("caloriesBurned");
-		setMostCalories({
-			value: parse(maxCalories.caloriesBurned),
-			date: new Date(maxCalories.createdAt),
-		});
+		if (maxCalories) {
+			setMostCalories({
+				value: parse(maxCalories.caloriesBurned),
+				date: new Date(maxCalories.createdAt),
+			});
+		}
 
 		// Longest Workout
 		const maxDuration = getMax("duration");
-		setLongestWorkout({
-			value: parse(maxDuration.duration),
-			date: new Date(maxDuration.createdAt),
-		});
+		if (maxDuration) {
+			setLongestWorkout({
+				value: parse(maxDuration.duration),
+				date: new Date(maxDuration.createdAt),
+			});
+		}
 
-		// Fastest Pace = duration / distance (smaller is better)
+		// Fastest Pace
 		const validPace = workoutData
 			.filter((w) => parse(w.duration) > 0 && parse(w.distance) > 0)
 			.map((w) => ({

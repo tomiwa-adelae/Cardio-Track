@@ -1,8 +1,9 @@
+import React, { ReactNode } from "react";
+import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs";
+
 import { authVideo } from "@/constants";
 import { getUserInfo } from "@/lib/actions/user.actions";
-import { auth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
-import React, { ReactNode } from "react";
 
 const AuthLayout = async ({ children }: { children: ReactNode }) => {
 	const { userId } = auth();

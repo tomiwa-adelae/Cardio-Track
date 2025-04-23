@@ -1,6 +1,6 @@
-import { getUserInfo } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+
 import {
 	Sidebar,
 	SidebarContent,
@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/sidebar";
 import AppHeader from "@/components/shared/AppHeader";
 import Logo from "@/components/shared/Logo";
+
+import { getUserInfo } from "@/lib/actions/user.actions";
 
 export default async function MainLayout({
 	children,

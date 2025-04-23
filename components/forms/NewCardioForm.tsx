@@ -1,13 +1,14 @@
 "use client";
+import { z } from "zod";
 import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import { LottieRefCurrentProps } from "lottie-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Clock, Flame, Heart, MapPin, Tally5 } from "lucide-react";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,7 +20,6 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { NewCardioFormSchema } from "@/lib/validations";
 import {
 	Select,
 	SelectContent,
@@ -29,18 +29,15 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import {
-	newDashboardAnimations,
-	workoutIntensities,
-	workoutType,
-} from "@/constants";
+import { newDashboardAnimations, workoutIntensities } from "@/constants";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "../ui/textarea";
-import { createCardioSession } from "@/lib/actions/cardio.actions";
+
 import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
+
 import { cn } from "@/lib/utils";
-import { Clock, Flame, Heart, MapPin, Tally5 } from "lucide-react";
+import { NewCardioFormSchema } from "@/lib/validations";
+import { createCardioSession } from "@/lib/actions/cardio.actions";
 
 export function NewCardioForm({ userId }: { userId: string }) {
 	const animationRef = useRef<LottieRefCurrentProps>(null);

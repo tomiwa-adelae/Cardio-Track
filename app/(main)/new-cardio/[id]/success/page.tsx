@@ -1,14 +1,15 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs";
+
 import SectionHeader from "@/components/shared/SectionHeader";
 import SummaryCardio from "@/components/shared/SummaryCardio";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+
 import { getCardioDetails } from "@/lib/actions/cardio.actions";
 import { getUserInfo } from "@/lib/actions/user.actions";
-import { auth } from "@clerk/nextjs";
-import Link from "next/link";
-import { redirect } from "next/navigation";
-
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
 	title: "Success Cardio Session – Log Your Workout | Cardio Track",

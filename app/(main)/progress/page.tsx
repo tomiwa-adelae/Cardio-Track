@@ -1,16 +1,17 @@
+import type { Metadata } from "next";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+
 import SectionHeader from "@/components/shared/SectionHeader";
 import Stats from "@/components/shared/Stats";
 import { WorkoutTable } from "@/components/shared/WorkoutTable";
 import { Button } from "@/components/ui/button";
 import { WorkoutCharts } from "@/components/WorkoutCharts";
-import { getCardios } from "@/lib/actions/cardio.actions";
-import { getUserInfo } from "@/lib/actions/user.actions";
-import { auth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
-
-import type { Metadata } from "next";
 import PersonalBest from "@/components/PersonalBest";
 import { Separator } from "@/components/ui/separator";
+
+import { getCardios } from "@/lib/actions/cardio.actions";
+import { getUserInfo } from "@/lib/actions/user.actions";
 
 export const metadata: Metadata = {
 	title: "View Progress – Cardio Track | Visualize Your Fitness Trends",
