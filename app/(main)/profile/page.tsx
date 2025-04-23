@@ -40,7 +40,7 @@ const page = async () => {
 				dob={user?.user?.dob}
 				userId={user?.user?._id}
 			/>
-			<Separator className="my-8" />
+			{/* <Separator className="my-8" />
 			<div>
 				<h3 className="font-medium text-lg mb-4 uppercase">
 					Data & Privacy
@@ -64,7 +64,7 @@ const page = async () => {
 						Delete account
 					</Button>
 				</div>
-			</div>
+			</div>*/}
 		</div>
 	);
 };

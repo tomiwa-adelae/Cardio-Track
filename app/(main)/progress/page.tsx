@@ -46,10 +46,10 @@ const page = async ({ searchParams }: SearchParamProps) => {
 			<PersonalBest workoutData={cardios.data} />
 			<Separator className="my-8" />
 			<WorkoutTable cardios={cardios.data} title="Workout history" />
-			<Separator className="my-8" />
+			{/* <Separator className="my-8" />
 			<Button size={"lg"} className="rounded-full">
 				Export reports
-			</Button>
+			</Button>*/}
 		</div>
 	);
 };
