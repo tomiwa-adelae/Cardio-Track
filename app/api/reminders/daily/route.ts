@@ -20,7 +20,7 @@ export async function GET() {
 		});
 
 		if (!session) {
-			await sendReminderMail(user.email, user.name);
+			await sendReminderMail(user.email, user.firstName);
 		}
 	}
 

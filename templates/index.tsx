@@ -86,6 +86,9 @@ export const generateSessionEmail = (name: string) => `
       margin: 0;
       color: #333;
     }
+    a{
+      color: #fff
+    }
     .container {
       max-width: 600px;
       margin: 30px auto;
@@ -111,11 +114,11 @@ export const generateSessionEmail = (name: string) => `
     }
     .btn {
       display: inline-block;
-      margin-top: 25px;
+      margin-top: 20px;
       background-color: #007bff;
-      color: #fff;
+      color: white;
       padding: 12px 20px;
-      border-radius: 5px;
+      border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
     }
@@ -194,15 +197,15 @@ export const generateWarningEmail = (
         margin: 20px 0;
       }
       .btn {
-        display: inline-block;
-        margin-top: 20px;
-        background-color: #007bff;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: 600;
-      }
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
       .footer {
         text-align: center;
         font-size: 12px;
