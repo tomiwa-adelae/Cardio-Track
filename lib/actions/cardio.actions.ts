@@ -5,6 +5,13 @@ import { connectToDatabase } from "../database";
 import Cardio from "../database/models/cardio.model";
 import User from "../database/models/user.model";
 import { handleError } from "../utils";
+import { generateSessionEmail, generateWarningEmail } from "@/templates";
+import Mailjet from "node-mailjet";
+
+const mailjet = Mailjet.apiConnect(
+	process.env.MAILJET_API_PUBLIC_KEY!,
+	process.env.MAILJET_API_PRIVATE_KEY!
+);
 
 // Create new cardio session
 export const createCardioSession = async ({
@@ -36,8 +43,69 @@ export const createCardioSession = async ({
 				message: `Oops! Cardio session was not created.`,
 			};
 
+		// 📊 Step 1: Get all cardio sessions for this user
+		const allSessions = await Cardio.find({ user: userId });
+
+		// 🧮 Step 2: Calculate average heart rate
+		const totalHR = allSessions.reduce(
+			(total, session) => total + Number(session.heartRate),
+			0
+		);
+		const avgHeartRate = totalHR / allSessions.length;
+
+		// 🔍 Step 3: Check if avg HR is outside normal range
+		const isAbnormal = avgHeartRate < 60 || avgHeartRate > 100;
+
+		// 📬 Step 4: Send health warning if needed
+		if (isAbnormal) {
+			await mailjet.post("send", { version: "v3.1" }).request({
+				Messages: [
+					{
+						From: {
+							Email: process.env.SENDER_EMAIL_ADDRESS!,
+							Name: process.env.COMPANY_NAME!,
+						},
+						To: [
+							{
+								Email: user.email,
+								Name: user.firstName,
+							},
+						],
+						Subject: `Health Alert - Abnormal Heart Rate Detected`,
+						TextPart: `Your average heart rate is outside the normal range.`,
+						HTMLPart: generateWarningEmail(
+							user.firstName,
+							avgHeartRate.toFixed(1)
+						),
+					},
+				],
+			});
+		}
+
+		// **Send success Email to user**
+		await mailjet.post("send", { version: "v3.1" }).request({
+			Messages: [
+				{
+					From: {
+						Email: process.env.SENDER_EMAIL_ADDRESS!,
+						Name: process.env.COMPANY_NAME!,
+					},
+					To: [
+						{
+							Email: user.email,
+							Name: user.firstName,
+						},
+					],
+					Subject: `Cardio Logged Successfully - Cardio Track`,
+					TextPart: `Cardio Logged Successfully - Cardio Track`,
+					HTMLPart: generateSessionEmail(user.firstName),
+				},
+			],
+		});
+
 		revalidatePath("/dashboard");
 		revalidatePath("/progress");
+
 		return {
 			status: 200,
 			cardio: JSON.parse(JSON.stringify(cardio)),
