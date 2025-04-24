@@ -89,10 +89,10 @@ export const workoutIntensities = ["Low", "Moderate", "High"];
 export const genders = ["Male", "Female"];
 
 export const showcaseVideo =
-	"https://res.cloudinary.com/dh0rc6p1c/video/upload/v1745236782/Cardio%20Track/3195943-uhd_3840_2160_25fps_ehvly2.mp4";
+	"https://res.cloudinary.com/dh0rc6p1c/video/upload/v1745236782/cardiotrack/3195943-uhd_3840_2160_25fps_ehvly2.mp4";
 
 export const joinVideo =
-	"https://res.cloudinary.com/dh0rc6p1c/video/upload/v1745243645/Cardio%20Track/3209241-uhd_3840_2160_25fps_qvto7a.mp4";
+	"https://res.cloudinary.com/dh0rc6p1c/video/upload/v1745243645/cardiotrack/3209241-uhd_3840_2160_25fps_qvto7a.mp4";
 
 export const authVideo =
 	"https://res.cloudinary.com/dh0rc6p1c/video/upload/v1745346747/cardiotrack/4367580-hd_1920_1080_30fps_k2xg3x.mp4";
